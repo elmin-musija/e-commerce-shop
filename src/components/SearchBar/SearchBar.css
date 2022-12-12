@@ -1,0 +1,8 @@
+.search-bar {
+	display: flex;
+	margin-left: 22px;
+	margin-right: 26px;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 24px;
+}
