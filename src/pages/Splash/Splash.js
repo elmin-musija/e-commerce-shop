@@ -3,7 +3,9 @@ import "./Splash.css";
 const Splash = (props) => {
 	return (
 		<div className="splash">
-			<h1>Splash</h1>
+			<img src="" alt="" />
+			<h1>e-shop</h1>
+			<h2>Your shopping solution</h2>
 		</div>
 	);
 };
