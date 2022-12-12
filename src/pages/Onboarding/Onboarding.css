@@ -16,13 +16,16 @@
 	line-height: 3rem;
 	text-align: center;
 	margin: 0 8.7rem 1.3rem;
-
 }
 
 .onboarding__p {
-font-size: 1.6rem;
-line-height: 2.4rem;
-text-align: center;
-margin: 0 3.2rem;
-
+	font-size: 1.6rem;
+	line-height: 2.4rem;
+	text-align: center;
+	margin: 0 3.2rem;
+}
+.onboarding__button {
+	width: 167px;
+	height: 37px;
+	margin: 0 auto;
 }
