@@ -1,0 +1,15 @@
+.custom-button__button {
+	font-size: 1.6rem;
+	font-weight: 600;
+	line-height: 24px;
+	letter-spacing: 0.1px;
+	color: white;
+	background-color: #364fd4;
+	border: none;
+	border-radius: 9px;
+	padding-block: 6px;
+	padding-inline: 26px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
