@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ReactComponent as OnboardingInnerImage } from "../../img/onboarding-inner-image.svg";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import "./Onboarding.css";
@@ -10,7 +11,9 @@ const Onboarding = (props) => {
 			<p className="onboarding__p">
 				Find your best products from popular shop wihout any delay
 			</p>
-			<CustomButton pr_class="onboarding__button">Get Started</CustomButton>
+			<Link className="onboarding__link" to="/home">
+				<CustomButton pr_class="onboarding__button">Get Started</CustomButton>
+			</Link>
 		</div>
 	);
 };

@@ -25,6 +25,10 @@
 	margin: 0 3.2rem;
 	margin-bottom: 86px;
 }
+.onboarding__link {
+	text-decoration: none;
+}
+
 .onboarding__button {
 	width: 167px;
 	height: 37px;
