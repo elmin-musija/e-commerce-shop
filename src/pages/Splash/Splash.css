@@ -1,7 +1,9 @@
 .splash {
-  background-color: #364fd4;
+	width: 100%;
+	height: 100%;
+	background-color: #364fd4;
 }
 
 .splash__subheader {
-  font-size: 1.2rem;
+	font-size: 1.2rem;
 }
