@@ -1,0 +1,22 @@
+.search-field {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 8px;
+	width: 263px;
+	padding-block: 18px;
+	padding-inline: 8px;
+	border-radius: 12px;
+	background-color: #f0f3f8;
+}
+.search-field__logo {
+	width: 24px;
+	height: 24px;
+}
+.search-field__search {
+	flex-grow: 1;
+	font-size: 1.4rem;
+	line-height: 20px;
+	border: none;
+	background-color: #f0f3f8;
+}
