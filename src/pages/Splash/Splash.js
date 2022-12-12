@@ -1,10 +1,12 @@
 import "./Splash.css";
+import { ReactComponent as SplashIcon } from "../../img/Icon.svg";
+import { ReactComponent as SplashLogo } from "../../img/Logo.svg";
 
 const Splash = (props) => {
   return (
     <div className="splash">
-      <img className="splash__img" src="" alt="" />
-      <h1 className="splash__header">e-shop</h1>
+      <SplashIcon className="splash__icon" />
+      <SplashLogo className="splash__logo" />
       <h2 className="splash__subheader">Your shopping solution</h2>
     </div>
   );
