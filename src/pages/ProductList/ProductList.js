@@ -1,9 +1,13 @@
 import "./ProductList.css";
+import SearchBar from "../../components/SearchBar/SearchBar"
+import Footer from "../../components/Footer/Footer"
 
 const ProductList = (props) => {
 	return (
 		<div className="product-list">
-			<h1>Productlist</h1>
+			<SearchBar className="product-list__searchbar"/>
+			<p className="product-list__p" >Sort by: </p>
+			<Footer/>
 		</div>
 	);
 };
