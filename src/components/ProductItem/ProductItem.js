@@ -17,7 +17,7 @@ const ProductItem = (props) => {
             {props.pr_rating}
           </p>
           <p className="product-item__p__description">{props.pr_description}</p>
-          <p className="product-item__p__price">{props.pr_price}</p>
+          <p className="product-item__p__price">{props.pr_price}€</p>
         </div>
         <div className="product-item__buttonflex">
           <RoundBluePlusButton className="product-item__button" />
