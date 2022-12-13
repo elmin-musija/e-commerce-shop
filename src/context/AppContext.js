@@ -9,6 +9,14 @@ export const AppContextProvider = ({ children }) => {
 		fetchData: [],
 	});
 
+	const [searchButton, setSearchButton] = useState(false);
+	const setSearchButtonToggle = () => {
+		setSearchButton((prevState) => !prevState)
+	}
+	const getSearchButtonToggle = () => {
+		return searchButton
+	}
+
 	const setUserSearchString = (paramSearchString) => {
 		setSearchString(paramSearchString);
 	};
@@ -40,6 +48,8 @@ export const AppContextProvider = ({ children }) => {
 				setFetchAllItems,
 				getFetchAllItemsData,
 				getFetchAllItemsState,
+				setSearchButtonToggle,
+				getSearchButtonToggle
 			}}
 		>
 			{children}
