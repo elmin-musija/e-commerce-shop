@@ -1,0 +1,10 @@
+.category-bar {
+	margin-left: 23px;
+	display: flex;
+	overflow: overlay;
+	gap: 1.8rem;
+	position: relative;
+}
+.category-bar::-webkit-scrollbar {
+	width: 0;
+}

@@ -1,15 +1,3 @@
-.category-thumbnail {
-	margin-left: 23px;
-	display: flex;
-	overflow: overlay;
-	gap: 1.8rem;
-	position: relative;
-}
-
-.category-thumbnail::-webkit-scrollbar {
-	width: 0;
-}
-
 .category-thumbnail__image {
 	width: 6rem;
 	height: 6rem;
