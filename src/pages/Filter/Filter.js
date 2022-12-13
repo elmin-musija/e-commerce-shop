@@ -1,11 +1,11 @@
 import "./Filter.css";
-
+import FilterHeader from "../../components/FilterHeader/FilterHeader";
 const Filter = (props) => {
-	return (
-		<div className="filter">
-			<h1>Filter</h1>
-		</div>
-	);
+  return (
+    <div className="filter">
+      <FilterHeader />
+    </div>
+  );
 };
 
 export default Filter;

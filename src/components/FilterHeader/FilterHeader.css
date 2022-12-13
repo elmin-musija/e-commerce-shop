@@ -1,0 +1,25 @@
+@font-face {
+  font-family: Poppins-Medium;
+  src: url(../../assets/fonts/Poppins/Poppins-Medium.ttf);
+}
+
+.filter__container {
+  width: 375px;
+  height: 93px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+.filter__h3 {
+  font-family: Poppins-Medium;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+  letter-spacing: 0.2px;
+  display: grid;
+  justify-items: center;
+}
+
+.filter-left-arrow {
+  margin: 0 0 0 23px;
+}
