@@ -1,4 +1,3 @@
-import "./ProductList.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Footer from "../../components/Footer/Footer";
 import { useState, useEffect } from 'react';
