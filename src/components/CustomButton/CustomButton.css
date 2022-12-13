@@ -13,3 +13,9 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.custom-button__product-details{
+	width: 327px;
+	height: 56px;
+	padding: 0 24px;
+}
