@@ -1,4 +1,122 @@
 .product-details {
 	width: 100%;
 	height: 100%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.product-details__article {
+	width: 327px;
+	height: 420px;
+	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
+	border-radius: 12px;
+}
+
+.product-details__img-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 310px;
+}
+
+.product-details__img {
+	width: 70%;
+	border-radius: 12px 12px 0px 0px;
+}
+
+.product-details__rating-container {
+	margin-left: 16px;
+}
+
+.product-details__headline {
+	font-size: 2rem;
+}
+
+.product-details__rating {
+	font-size: 1.2rem;
+}
+
+.product-details__title-btns-container{
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 11px;
+}
+
+.product-details__buttons {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+	font-size: 1.8rem;
+	gap: 10px;
+	margin-right: 16px;
+}
+
+.product-details__button-plus {
+	width: 24px;
+	height: 24px;	
+	border-radius: 3px;
+	background: #828B9A;
+	color: white;
+	border: none;
+	font-size: 1.8rem;
+}
+
+.product-details__button-plus:hover {
+	background-color: rgba(128, 128, 128, 0.473);
+}
+
+.product-details__button-minus:hover {
+	background-color: rgba(128, 128, 128, 0.473);
+}
+
+.product-details__button-minus {
+	width: 24px;
+	height: 24px;	
+	border-radius: 3px;
+	background: #CAD1D9;;
+	color: white;
+	border: none;
+	font-size: 1.8rem;
+}
+
+.product-details__price-space-container{
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin: 0 16px;
+	padding-bottom: 32px;
+}
+
+.product-details__space {
+	font-size: 1.4rem;
+	color: #B9C1CC;
+}
+
+.product-details__price {
+	font-size: 2.8rem;	
+	font-weight: 800;
+	color: #364FD4;
+}
+
+.product-details__container-description{
+	height: 50px;
+}
+
+.product-details__head-description{
+	font-size: 20px;
+	margin: 0 234px 18px 0 ;
+}
+
+.product-details__description{
+	color: #B9C1CC;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0 0 24px;
+}
+
+.custom-button__product-details{
+	width: 327px;
+	height: 56px;
 }
