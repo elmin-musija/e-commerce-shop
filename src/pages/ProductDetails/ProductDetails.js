@@ -1,44 +1,71 @@
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./ProductDetails.css";
 import "../../components/CustomButton/CustomButton.css"
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Footer from "../../components/Footer/Footer"
+import FilterHeader from "../../components/FilterHeader/FilterHeader"
+import FooterSticky from "../../components/Footer/FooterSticky";
 
 const ProductDetails = (props) => {
-	const { search } = useParams();
+	const { id } = useParams();
+	const [loading, setLoading] = useState(true);
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		setLoading(true);
+		fetch(`https://dummyjson.com/products/${id}`)
+			.then((response) => response.json())
+			.then((json) => {
+				setData(json);
+				setLoading(false);
+			});
+	}, [id]);
+
+	if (loading) {
+		return (
+			<div className="loader-container">
+				<div className="loader"></div>
+			</div>
+		);
+	}
+
+	console.log(data);
 
 	return (
+		<section className="product-details__section">
+			<FilterHeader name={data.title}/>
 		<div className="product-details">
 			<div className="product-details__article">
-				<div 			className="product-details__img-container">
-					<img className="product-details__img" src="https://i.dummyjson.com/data/products/12/2.jpg" alt="" />
+				<div className="product-details__img-container">
+					<img className="product-details__img" src={data.images[0]} alt={data.brand} />
 				</div>
 				<div className="product-details__title-btns-container">
 					<div className="product-details__rating-container">
-						<h4 className="product-details__headline">Formal Shirt</h4>
-						<p className="product-details__rating">⭐️ 4.5</p>
+						<h4 className="product-details__headline">{data.title}</h4>
+						<p className="product-details__rating">⭐️ {data.rating}</p>
 					</div>
 					<div className="product-details__buttons">
 						<button className="product-details__button-minus">-</button>
-						<p>5</p>
+						<p>1</p>
 						<button className="product-details__button-plus">+</button>
 					</div>
 				</div>
 				<div className="product-details__price-space-container">
 					<p className="product-details__space">
-						5 pieces in stock
+						{data.stock} pieces in stock
 					</p>
-					<p className="product-details__price">$49.00</p>
+					<p className="product-details__price">${data.price}</p>
 				</div>
 				<div className="product-details__container-description">
 					<h4 className="product-details__head-description">Description</h4>
-					<p className="product-details__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur itaque voluptatum mollitia ex quaerat aspernatur vel dolorem consequatur, ducimus cupiditate.</p>
+					<p className="product-details__description">{data.description}</p>
 					<CustomButton children="Add to Cart" pr_class="custom-button__product-details"/>
 				</div>
-				
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
+		</section>
 	);
 };
 

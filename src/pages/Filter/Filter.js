@@ -3,7 +3,7 @@ import FilterHeader from "../../components/FilterHeader/FilterHeader";
 const Filter = (props) => {
   return (
     <div className="filter">
-      <FilterHeader />
+      <FilterHeader name="Filters" />
     </div>
   );
 };

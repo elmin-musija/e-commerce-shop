@@ -4,16 +4,19 @@ import AppContext from "../../context/AppContext";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
+import FooterSticky from "../../components/Footer/FooterSticky";
 import "./Home.css";
 
 const Home = (props) => {
-	const { getUserSearchString } = useContext(AppContext);
+	const { getUserSearchString, setUserSearchString } = useContext(AppContext);
 	const { getFetchAllItemsState, getFetchAllItemsData } =
 		useContext(AppContext);
 
 	const redirectToProductDetails = () => {
 		if (getUserSearchString() !== "") {
-			return <Navigate to={`/productdetails/${getUserSearchString()}`} />;
+			const tmpUserSearchString = getUserSearchString();
+			setUserSearchString("");
+			return <Navigate to={`/productdetails/${tmpUserSearchString}`} />;
 		}
 	};
 

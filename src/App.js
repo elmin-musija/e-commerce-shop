@@ -48,7 +48,7 @@ function App() {
 							}
 						></Route>
 						<Route
-							path="/productlist"
+							path="/productlist/:category"
 							element={
 								<PageWrapper>
 									<ProductList />
@@ -56,7 +56,7 @@ function App() {
 							}
 						></Route>
 						<Route
-							path="/productdetails/:search"
+							path="/productdetails/:id"
 							element={
 								<PageWrapper>
 									<ProductDetails />
