@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppContextProvider } from "./context/AppContext";
 import Splash from "./pages/Splash/Splash";
 import Onboarding from "./pages/Onboarding/Onboarding";
 import Home from "./pages/Home/Home";
@@ -11,58 +12,60 @@ import "./App.css";
 function App() {
 	return (
 		<div className="App">
-			<BrowserRouter>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<PageWrapper>
-								<Splash />
-							</PageWrapper>
-						}
-					></Route>
-					<Route
-						path="/onboarding"
-						element={
-							<PageWrapper>
-								<Onboarding />
-							</PageWrapper>
-						}
-					></Route>
-					<Route
-						path="/home"
-						element={
-							<PageWrapper>
-								<Home />
-							</PageWrapper>
-						}
-					></Route>
-					<Route
-						path="/filter"
-						element={
-							<PageWrapper>
-								<Filter />
-							</PageWrapper>
-						}
-					></Route>
-					<Route
-						path="/productlist"
-						element={
-							<PageWrapper>
-								<ProductList />
-							</PageWrapper>
-						}
-					></Route>
-					<Route
-						path="/productdetails"
-						element={
-							<PageWrapper>
-								<ProductDetails />
-							</PageWrapper>
-						}
-					></Route>
-				</Routes>
-			</BrowserRouter>
+			<AppContextProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route
+							path="/"
+							element={
+								<PageWrapper>
+									<Splash />
+								</PageWrapper>
+							}
+						></Route>
+						<Route
+							path="/onboarding"
+							element={
+								<PageWrapper>
+									<Onboarding />
+								</PageWrapper>
+							}
+						></Route>
+						<Route
+							path="/home"
+							element={
+								<PageWrapper>
+									<Home />
+								</PageWrapper>
+							}
+						></Route>
+						<Route
+							path="/filter"
+							element={
+								<PageWrapper>
+									<Filter />
+								</PageWrapper>
+							}
+						></Route>
+						<Route
+							path="/productlist"
+							element={
+								<PageWrapper>
+									<ProductList />
+								</PageWrapper>
+							}
+						></Route>
+						<Route
+							path="/productdetails/:search"
+							element={
+								<PageWrapper>
+									<ProductDetails />
+								</PageWrapper>
+							}
+						></Route>
+					</Routes>
+				</BrowserRouter>
+			</AppContextProvider>
 		</div>
 	);
 }

@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import "../../components/CustomButton/CustomButton.css"
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Footer from "../../components/Footer/Footer"
 
 const ProductDetails = (props) => {
+	const { search } = useParams();
+
 	return (
 		<div className="product-details">
 			<div className="product-details__article">
