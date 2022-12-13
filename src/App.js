@@ -48,7 +48,7 @@ function App() {
 							}
 						></Route>
 						<Route
-							path="/productlist"
+							path="/productlist/:category"
 							element={
 								<PageWrapper>
 									<ProductList />
