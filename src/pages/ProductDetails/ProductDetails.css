@@ -1,7 +1,11 @@
+.product-details__section{
+	position: relative;
+	height: 100%;
+}
+
 .product-details {
 	width: 100%;
 	height: 100%;
-	position: relative;
 	display: flex;
 	justify-content: center;
 }
@@ -21,7 +25,7 @@
 }
 
 .product-details__img {
-	width: 70%;
+	width: 100%;
 	border-radius: 12px 12px 0px 0px;
 }
 
