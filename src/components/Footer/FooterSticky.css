@@ -1,14 +1,15 @@
-.footer {
-    position: absolute;
+.product-list__footer {
+    position: sticky;
     bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 375px;
-    height: 82px;
+    min-height: 82px;
     border-top: 1px solid rgba(128, 128, 128, 0.188) ;
     border-radius: 32px 32px 0px 0px;
     background-color: white;
+
 }
 
 .footer__home-icon {

@@ -4,7 +4,9 @@ import AppContext from "../../context/AppContext";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
+import FooterSticky from "../../components/Footer/FooterSticky";
 import "./Home.css";
+
 
 const Home = (props) => {
 	const { getUserSearchString } = useContext(AppContext);
