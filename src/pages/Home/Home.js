@@ -7,10 +7,20 @@ import "./Home.css";
 
 const Home = (props) => {
 	const { getUserSearchString } = useContext(AppContext);
+	const { getFetchAllItemsState, getFetchAllItemsData } =
+		useContext(AppContext);
 
 	const redirectToProductDetails = () => {
 		if (getUserSearchString() !== "") {
 			return <Navigate to={`/productdetails/${getUserSearchString()}`} />;
+		}
+	};
+
+	const displayFetchDataBrand = () => {
+		if (getFetchAllItemsState() === true) {
+			return getFetchAllItemsData().map((element, index) => {
+				return <p key={index}>{element.brand}</p>;
+			});
 		}
 	};
 
@@ -19,6 +29,8 @@ const Home = (props) => {
 			<h1 className="home__h1">Find your favourite Product</h1>
 			<SearchBar />
 			<Footer />
+			{/* Demo */}
+			{/* {displayFetchDataBrand()} */}
 			{redirectToProductDetails()}
 		</div>
 	);
