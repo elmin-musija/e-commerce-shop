@@ -1,43 +1,52 @@
+import { useState, useEffect, useContext } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { useState, useEffect } from 'react';
 import ProductItem from "../../components/ProductItem/ProductItem";
-import "./ProductList.css"
 import FooterSticky from "../../components/Footer/FooterSticky";
+import AppContext from "../../context/AppContext";
+import "./ProductList.css";
 
 const ProductList = (props) => {
+	const [data, setData] = useState([]);
 
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+	const { getUserSearchString, setUserSearchString, getFetchAllItemsData } =
+		useContext(AppContext);
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch('https://dummyjson.com/products/?limit=20')
-      .then(response => response.json())
-      .then(json => {
-        setData(json.products);
-        setIsLoading(false);
-      });
-  }, []);
+	useEffect(() => {
+		if (getUserSearchString() !== "") {
+			const result = getFetchAllItemsData().filter((element) => {
+				if (
+					element.title.toLowerCase().includes(getUserSearchString()) ||
+					element.brand.toLowerCase().includes(getUserSearchString()) ||
+					element.description.toLowerCase().includes(getUserSearchString())
+				) {
+					return element;
+				}
+			});
+			setData(result);
+			setUserSearchString("");
+		}
+	}, [getUserSearchString()]);
 
-  if (isLoading) {
-   return <p>is Loading.....</p>
-  } 
-
-  console.log(data);
-
-  return (
-    <div className="product-list">
-        <SearchBar className="product-list__searchbar" />
-        <p className="product-list__p">Sort by: </p>
-        <div className="product-list-props">
-        {data.map((element, index) => {
-            return <ProductItem key={index} pr_image={element.images[0]} pr_alt={element.brand} 
-            pr_rating={element.rating} pr_price={element.price} />
-    })}
-      </div>
-      <FooterSticky />
-    </div>
-  );
+	return (
+		<div className="product-list">
+			<SearchBar className="product-list__searchbar" />
+			<p className="product-list__p">Sort by: </p>
+			<div className="product-list-props">
+				{data.map((element, index) => {
+					return (
+						<ProductItem
+							key={index}
+							pr_image={element.images[0]}
+							pr_alt={element.brand}
+							pr_rating={element.rating}
+							pr_price={element.price}
+						/>
+					);
+				})}
+			</div>
+			<FooterSticky />
+		</div>
+	);
 };
 
 export default ProductList;

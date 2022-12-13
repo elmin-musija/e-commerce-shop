@@ -14,9 +14,7 @@ const Home = (props) => {
 
 	const redirectToProductDetails = () => {
 		if (getUserSearchString() !== "") {
-			const tmpUserSearchString = getUserSearchString();
-			setUserSearchString("");
-			return <Navigate to={`/productdetails/${tmpUserSearchString}`} />;
+			return <Navigate to={"/productlist"} />;
 		}
 	};
 
@@ -34,8 +32,6 @@ const Home = (props) => {
 			<SearchBar />
 			<CategoryBar />
 			<Footer />
-			{/* Demo */}
-			{/* {displayFetchDataBrand()} */}
 			{redirectToProductDetails()}
 		</div>
 	);
