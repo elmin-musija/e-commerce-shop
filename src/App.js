@@ -56,7 +56,7 @@ function App() {
 							}
 						></Route>
 						<Route
-							path="/productdetails"
+							path="/productdetails/:search"
 							element={
 								<PageWrapper>
 									<ProductDetails />
