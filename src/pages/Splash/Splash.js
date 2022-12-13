@@ -9,17 +9,33 @@ import "./Splash.css";
 
 const Splash = (props) => {
   const [redirect, setRedirect] = useState(false);
-  const { setFetchAllItems } = useContext(AppContext);
+  const {
+    getFetchAllItemsState,
+    setFetchAllItems,
+    getFetchCategoryAllState,
+    setFetchCategoryAll,
+  } = useContext(AppContext);
 
   const fetchFunctionAllItems = () => {
-    fetch("https://dummyjson.com/products/?limit=30")
+    setFetchAllItems(false, []);
+    fetch("https://dummyjson.com/products/?limit=100")
       .then((response) => response.json())
       .then((allItems) => {
         setFetchAllItems(true, allItems.products);
       });
   };
 
+  const fetchFunctionAllCategories = () => {
+    setFetchCategoryAll(false, []);
+    fetch("https://dummyjson.com/products/categories/")
+      .then((response) => response.json())
+      .then((allItems) => {
+        setFetchCategoryAll(true, allItems);
+      });
+  };
+
   useEffect(fetchFunctionAllItems, []);
+  useEffect(fetchFunctionAllCategories, []);
 
   const redirectToOnboarding = () => {
     return <Navigate to="/onboarding" />;
@@ -39,7 +55,10 @@ const Splash = (props) => {
       <h2 className="splash__subheader e-shop-animation-three">
         Your shopping solution
       </h2>
-      {redirect && redirectToOnboarding()}
+      {redirect &&
+        getFetchAllItemsState() &&
+        getFetchCategoryAllState &&
+        redirectToOnboarding()}
       <LoadingAnimation />
     </div>
   );
