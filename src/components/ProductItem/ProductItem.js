@@ -16,6 +16,7 @@ const ProductItem = (props) => {
 						<YellowStar className="product-item_star" />
 						{props.pr_rating}
 					</p>
+					<p className="product-item__p__title">{props.pr_title}</p>
 					<p className="product-item__p__description">{props.pr_description}</p>
 					<p className="product-item__p__price">{props.pr_price}$</p>
 				</div>

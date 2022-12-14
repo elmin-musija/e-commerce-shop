@@ -69,6 +69,7 @@ const Home = (props) => {
 						<Link to={`/productdetails/${elt.id}`}>
 						<ProductItem
 							key={index}
+							pr_title={elt.title}
 							pr_image={elt.images[0]}
 							pr_alt={elt.brand}
 							pr_rating={elt.rating}
