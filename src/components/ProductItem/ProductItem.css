@@ -1,68 +1,89 @@
 @font-face {
-  font-family: Poppins;
-  src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf);
+	font-family: Poppins;
+	src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf);
 }
 
 .product-item {
-  width: 154px;
-  height: 194px;
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+	width: 154px;
+	height: 194px;
+	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
 }
 .product-item__img {
-  width: 138px;
-  height: 110px;
-  background-color: #f0f3f8;
-  border-radius: 12px;
-  border: none;
-  margin: 8px 8px 4px 8px;
+	width: 138px;
+	height: 110px;
+	background-color: #f0f3f8;
+	border-radius: 12px;
+	border: none;
+	margin: 8px 8px 4px 8px;
+	transition: all 75ms;
+	object-fit: cover;
 }
-
+.product-item__img:hover {
+	transform: scale(1.05);
+}
 .product-item__p__rating {
-  font-size: 9px;
-  color: #828b9a;
-  margin: 0 0 0 11px;
-  line-height: 16px;
-  font-weight: 400;
-  font-family: Poppins;
+	font-size: 9px;
+	color: #828b9a;
+	margin: 0 0 0 11px;
+	line-height: 16px;
+	font-weight: 400;
+	font-family: Poppins;
+	transition: all 75ms;
+}
+.product-item__p__rating:hover {
+	transform: scale(1.15);
 }
 
 .product-item__p__description {
-  font-size: 14px;
-  margin: 0 0 3px 11px;
-  line-height: 20px;
-  font-weight: 600;
-  font-family: Poppins;
+	font-size: 14px;
+	margin: 0 0 3px 11px;
+	line-height: 20px;
+	font-weight: 600;
+	font-family: Poppins;
 }
 .product-item__p__price {
-  font-size: 12px;
-  color: #364fd4;
-  margin: 0 0 0 11px;
-  line-height: 18px;
-  font-weight: 500;
-  font-family: Poppins;
+	font-size: 12px;
+	color: #364fd4;
+	margin: 0 0 0 11px;
+	line-height: 18px;
+	font-weight: 500;
+	font-family: Poppins;
+	transition: all 75ms;
+}
+.product-item__p__price:hover {
+	transform: scale(1.15);
 }
 
 .product-item__flex {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+}
+.product-item__img:hover {
+	transform: scale(1.05);
 }
 
 .product-item__buttonflex {
-  display: flex;
-  align-items: flex-end;
-  margin: 0 13px 5px 0;
-  /* margin sollte normalerweise einen 20px abstand nach unten haben, doch der die Pixelabrundung wir nicht mitgezählt */
+	display: flex;
+	align-items: flex-end;
+	margin: 0 13px 5px 0;
+	cursor: pointer;
+	transition: all 75ms;
+	/* margin sollte normalerweise einen 20px abstand nach unten haben, doch der die Pixelabrundung wir nicht mitgezählt */
 }
-
+.product-item__buttonflex:hover {
+	transform: scale(1.15);
+}
+.product-item__buttonflex:active {
+	transform: scale(0.9);
+}
 .product-item_star {
-  width: 9px;
-  height: 9px;
-  margin: 0 3px -1px 0;
-  /* minus pixel ist defintiv nicht die beste Lösung um den gelben Stern wie in der Vorlage neben der Ratingzahl zu platzieren */
+	width: 9px;
+	height: 9px;
+	margin: 0 3px -1px 0;
+	/* minus pixel ist defintiv nicht die beste Lösung um den gelben Stern wie in der Vorlage neben der Ratingzahl zu platzieren */
 }
-
 .product-item_button {
-  width: 20px;
-  height: 20px;
+	width: 20px;
+	height: 20px;
 }
