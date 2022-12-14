@@ -6,6 +6,7 @@ import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import React from 'react';
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 const Home = (props) => {
@@ -65,6 +66,7 @@ const Home = (props) => {
 			<div className="home__grid">
 				{data.map((elt, index) => {
 					return (
+						<Link to={`/productdetails/${elt.id}`}>
 						<ProductItem
 							key={index}
 							pr_image={elt.images[0]}
@@ -72,6 +74,7 @@ const Home = (props) => {
 							pr_rating={elt.rating}
 							pr_price={elt.price}
 						/>
+						</Link>
 					);
 				})}
 			</div>

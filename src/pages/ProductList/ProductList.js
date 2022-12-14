@@ -3,6 +3,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import FooterSticky from "../../components/Footer/FooterSticky";
 import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 import "./ProductList.css";
 
 const ProductList = (props) => {
@@ -37,6 +38,7 @@ const ProductList = (props) => {
 			<div className="product-list-props">
 				{data.map((element, index) => {
 					return (
+						<Link to={`/productdetails/${element.id}`}>
 						<ProductItem
 							key={index}
 							pr_image={element.images[0]}
@@ -45,6 +47,7 @@ const ProductList = (props) => {
 							pr_rating={element.rating}
 							pr_price={element.price}
 						/>
+						</Link>
 					);
 				})}
 			</div>
