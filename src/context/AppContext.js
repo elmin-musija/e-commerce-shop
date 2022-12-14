@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
 	const [searchString, setSearchString] = useState("");
-
+	const [searchButtonClicked, setSearchBUttonClicked] = useState(false);
 	const [fetchAll, setFetchAll] = useState({
 		fetchState: false,
 		fetchData: [],
@@ -26,9 +26,19 @@ export const AppContextProvider = ({ children }) => {
 	// user input search
 	const setUserSearchString = (paramSearchString) => {
 		setSearchString(paramSearchString);
+		localStorage.setItem("searchString", paramSearchString);
 	};
 	const getUserSearchString = () => {
-		return searchString;
+		return localStorage.getItem("searchString");
+	};
+	const setUserSearchButtonClicked = () => {
+		setSearchBUttonClicked(true);
+	};
+	const getUserSearchButtonClicked = () => {
+		return searchButtonClicked;
+	};
+	const resetUserSearchButtonClicked = () => {
+		setSearchBUttonClicked(false);
 	};
 
 	// fetch all items
@@ -38,14 +48,18 @@ export const AppContextProvider = ({ children }) => {
 			fetchState: paramFetchState,
 			fetchData: paramFetchData,
 		}));
+		localStorage.setItem("allItemsData", JSON.stringify(paramFetchData));
+		localStorage.setItem("allItemsState", paramFetchState);
 	};
 	const getFetchAllItemsData = () => {
-		if (fetchAll.fetchState === true) {
+		if (fetchAll.fetchState === true && fetchAll.fetchData.length !== 0) {
 			return fetchAll.fetchData;
+		} else {
+			return JSON.parse(localStorage.getItem("allItemsData"));
 		}
 	};
 	const getFetchAllItemsState = () => {
-		return fetchAll.fetchState;
+		return localStorage.getItem("allItemsState");
 	};
 
 	// fetch all categories
@@ -55,11 +69,18 @@ export const AppContextProvider = ({ children }) => {
 			fetchState: paramFetchState,
 			fetchData: paramFetchData,
 		}));
+		localStorage.setItem("allCategoriesData", JSON.stringify(paramFetchData));
+		localStorage.setItem("allCategoriesState", paramFetchState);
 	};
 
 	const getFetchCategoryAllData = () => {
-		if (fetchAllCategory.fetchState === true) {
+		if (
+			fetchAllCategory.fetchState === true &&
+			fetchAllCategory.fetchData.length > 0
+		) {
 			return fetchAllCategory.fetchData;
+		} else {
+			return JSON.parse(localStorage.getItem("allCategoriesData"));
 		}
 	};
 
@@ -76,9 +97,13 @@ export const AppContextProvider = ({ children }) => {
 					}
 				});
 			});
+			localStorage.setItem(
+				"allCategoriesArray",
+				JSON.stringify(categoriesArray)
+			);
 			return categoriesArray;
 		}
-		return false;
+		return JSON.parse(localStorage.getItem("allCategoriesArray"));
 	};
 
 	return (
@@ -86,6 +111,9 @@ export const AppContextProvider = ({ children }) => {
 			value={{
 				setUserSearchString,
 				getUserSearchString,
+				setUserSearchButtonClicked,
+				getUserSearchButtonClicked,
+				resetUserSearchButtonClicked,
 				setFetchAllItems,
 				getFetchAllItemsData,
 				getFetchAllItemsState,
