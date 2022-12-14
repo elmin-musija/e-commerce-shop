@@ -9,8 +9,14 @@ export const AppContextProvider = ({ children }) => {
 		fetchState: false,
 		fetchData: [],
 	});
-
 	const [searchButton, setSearchButton] = useState(false);
+	const [selectedCategory, setSelectedCategory] = useState("");
+
+	const [fetchAllCategory, setFetchAllCategory] = useState({
+		fetchState: false,
+		fetchData: [],
+	});
+
 	const setSearchButtonToggle = () => {
 		setSearchButton((prevState) => !prevState);
 	};
@@ -18,19 +24,23 @@ export const AppContextProvider = ({ children }) => {
 		return searchButton;
 	};
 
-	const [fetchAllCategory, setFetchAllCategory] = useState({
-		fetchState: false,
-		fetchData: [],
-	});
-
 	// user input search
 	const setUserSearchString = (paramSearchString) => {
-		setSearchString(paramSearchString);
-		localStorage.setItem("searchString", paramSearchString);
+		setSearchString(paramSearchString.toLowerCase());
+		localStorage.setItem("searchString", paramSearchString.toLowerCase());
 	};
 	const getUserSearchString = () => {
 		return localStorage.getItem("searchString");
 	};
+
+	const setUserSelectedCategory = (paramCategory) => {
+		setSelectedCategory(paramCategory);
+		localStorage.setItem("selectedCategory", paramCategory);
+	};
+	const getUserSelectedCategory = () => {
+		return localStorage.getItem("selectedCategory");
+	};
+
 	const setUserSearchButtonClicked = () => {
 		setSearchBUttonClicked(true);
 	};
@@ -123,6 +133,8 @@ export const AppContextProvider = ({ children }) => {
 				getFetchCategoryAllData,
 				getFetchCategoryAllState,
 				getCategoriesArray,
+				setUserSelectedCategory,
+				getUserSelectedCategory,
 			}}
 		>
 			{children}

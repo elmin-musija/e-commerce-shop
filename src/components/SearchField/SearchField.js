@@ -12,10 +12,18 @@ const SearchField = (props) => {
 		setSearchButtonToggle,
 	} = useContext(AppContext);
 
-	const inputOnChangeHandler = (event) => {
+	const inputOnKeyDownHandler = (event) => {
 		if (event.key === "Enter") {
 			setUserSearchString(event.target.value);
 			setUserSearchButtonClicked();
+		}
+	};
+
+	const inputOnChangeHandler = (event) => {
+		if (event.target.value === "") {
+			setUserSearchString("");
+		} else {
+			setUserSearchString(event.target.value);
 		}
 	};
 
@@ -48,7 +56,8 @@ const SearchField = (props) => {
 				id="input-search"
 				placeholder="Search"
 				required
-				onKeyDown={inputOnChangeHandler}
+				onKeyDown={inputOnKeyDownHandler}
+				onChange={inputOnChangeHandler}
 				onFocus={onFocusHandler}
 			/>
 		</div>
