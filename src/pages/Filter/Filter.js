@@ -1,4 +1,5 @@
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
+import CustomFilterButton from "../../components/CustomFilterButton/CustomFilterButton";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
@@ -12,7 +13,9 @@ const Filter = (props) => {
 		if (tmp.length > 0) {
 			return tmp.map((element) => {
 				return (
-					<button className="filter-grid-item">{element[0].category}</button>
+					<CustomFilterButton className="filter-grid-item">
+						{element[0].category}
+					</CustomFilterButton>
 				);
 			});
 		}
