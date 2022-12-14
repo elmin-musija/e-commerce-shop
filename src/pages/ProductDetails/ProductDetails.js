@@ -10,15 +10,8 @@ const ProductDetails = (props) => {
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
-	const [count, setCount] = useState(0)
-
-	const handlePlusClick = () => {
-		setCount(count + 1);
-	  };
-
-	const handleMinusClick = () => {	
-		setCount(count - 1);
-	};
+	const [count, setCount] = useState(0);
+	const [stock, setStock] = useState("");
 
 	useEffect(() => {
 		setLoading(true);
@@ -27,8 +20,11 @@ const ProductDetails = (props) => {
 			.then((json) => {
 				setData(json);
 				setLoading(false);
+				setStock(json.stock);
 			});
 	}, [id]);
+
+console.log(stock);
 
 	if (loading) {
 		return (
@@ -37,6 +33,20 @@ const ProductDetails = (props) => {
 			</div>
 		);
 	}
+
+	const handlePlusClick = () => {
+		if (count >= stock) {
+		return
+	  } else 
+	  setCount(count + 1);
+	};
+
+	const handleMinusClick = () => {	
+		if (count <=0) {
+			return
+		} else
+		setCount(count - 1);
+	};
 
 	return (
 		<section className="product-details__section">
