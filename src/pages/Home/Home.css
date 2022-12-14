@@ -4,13 +4,15 @@
 	height: 100%;
 }
 
-.home__grid{
+.home__grid {
 	height: 100%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-items: center;
 	position: relative;
 	overflow: scroll;
+	column-gap: 0px;
+	row-gap: 20px;
 }
 
 .home__grid::-webkit-scrollbar {
@@ -22,18 +24,18 @@
 	padding: 50px 76px 22px 23px;
 }
 
-.home__button-container{
+.home__button-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin: 10px 20px 16px;
 }
 
-.home__button-one{
- 	color: #1E2126;
- 	background-color: white;
- 	font-size: 1.6rem;
- 	padding: 5px 5px;
+.home__button-one {
+	color: #1e2126;
+	background-color: white;
+	font-size: 1.6rem;
+	padding: 5px 5px;
 	border: none;
 }
 
@@ -41,10 +43,10 @@
 	background-color: #b9c1cc33;
 }
 
-.home__button-second{
-	color: #B9C1CC;
+.home__button-second {
+	color: #b9c1cc;
 	background-color: white;
-	border: none;	
+	border: none;
 	font-size: 1.2rem;
 }
 
