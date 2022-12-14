@@ -3,13 +3,17 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import FooterSticky from "../../components/Footer/FooterSticky";
 import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 import "./ProductList.css";
 
 const ProductList = (props) => {
 	const [data, setData] = useState([]);
 
-	const { getUserSearchString, setUserSearchString, getFetchAllItemsData } =
-		useContext(AppContext);
+	const {
+		getUserSearchString,
+		getFetchAllItemsData,
+		resetUserSearchButtonClicked,
+	} = useContext(AppContext);
 
 	useEffect(() => {
 		if (getUserSearchString() !== "") {
@@ -23,9 +27,9 @@ const ProductList = (props) => {
 				}
 			});
 			setData(result);
-			setUserSearchString("");
+			resetUserSearchButtonClicked();
 		}
-	}, [getUserSearchString()]);
+	}, [getUserSearchString, getFetchAllItemsData]);
 
 	return (
 		<div className="product-list">
@@ -34,13 +38,16 @@ const ProductList = (props) => {
 			<div className="product-list-props">
 				{data.map((element, index) => {
 					return (
+						<Link to={`/productdetails/${element.id}`}>
 						<ProductItem
 							key={index}
 							pr_image={element.images[0]}
+							pr_description={element.title}
 							pr_alt={element.brand}
 							pr_rating={element.rating}
 							pr_price={element.price}
 						/>
+						</Link>
 					);
 				})}
 			</div>
