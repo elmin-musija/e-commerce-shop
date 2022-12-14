@@ -17,11 +17,27 @@ const Home = (props) => {
 				const result = getFetchAllItemsData();
 				result.sort((a, b) => {
 					return b.rating - a.rating;
-					
 				});
 				setData(result);
 		}, []);
-	console.log(data);
+
+		const sortPopular = (event) => {
+			event.preventDefault();
+			const sortedPopular = [...data].sort((a, b) => {
+					return b.rating - a.rating;
+				});
+			setData(sortedPopular);
+		  };
+	
+		const sortAtoZ = (event) => {
+			event.preventDefault();
+			const sortedData = [...data].sort((elt1, elt2) => {
+			  if (elt1.title < elt2.title) return -1;
+			  if (elt1.title > elt2.title) return 1;
+			  return 0;
+			});
+			setData(sortedData);
+		  };
 
 	const redirectToProductDetails = () => {
 		if (getUserSearchString() !== "") {
@@ -42,6 +58,10 @@ const Home = (props) => {
 			<h1 className="home__h1">Find your favourite Product</h1>
 			<SearchBar />
 			<CategoryBar />
+			<div className="home__button-container">
+				<button className="home__button-one" onClick={sortPopular}>Popular</button>
+				<button className="home__button-second" onClick={sortAtoZ}>A - Z</button>
+			</div>
 			<div className="home__grid">
 				{data.map((elt, index) =>{
 				return <ProductItem key={index} pr_image={elt.images[0]} pr_alt={elt.brand} pr_rating={elt.rating} pr_price={elt.price}/>

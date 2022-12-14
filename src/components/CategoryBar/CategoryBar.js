@@ -9,9 +9,10 @@ const CategoryBar = (props) => {
 	const displayCategoryBar = () => {
 		const tmp = getCategoriesArray();
 		if (tmp.length > 0) {
-			return tmp.map((element) => {
+			return tmp.map((element, index) => {
 				return (
 					<CategoryThumbnail
+						key={index}
 						pr_src={element[0].thumbnail}
 						pr_alt={element[0].title}
 						pr_category={element[0].category}
