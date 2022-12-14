@@ -11,9 +11,9 @@ const Filter = (props) => {
 	const mapCategoryFilter = () => {
 		const tmp = getCategoriesArray();
 		if (tmp.length > 0) {
-			return tmp.map((element) => {
+			return tmp.map((element, index) => {
 				return (
-					<CustomFilterButton className="filter-grid-item">
+					<CustomFilterButton key={index} className="filter-grid-item">
 						{element[0].category}
 					</CustomFilterButton>
 				);
@@ -59,11 +59,12 @@ const Filter = (props) => {
 
 	const mapBrandFilter = () => {
 		const tmp = getCategoriesArray();
-		console.log(tmp);
 		if (tmp.length > 0) {
-			return tmp.map((element) => {
+			return tmp.map((element, index) => {
 				return (
-					<button className="filter-grid-item ">{element[0].brand}</button>
+					<button key={index} className="filter-grid-item ">
+						{element[0].brand}
+					</button>
 				);
 			});
 		}
