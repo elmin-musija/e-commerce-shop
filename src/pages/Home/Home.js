@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
 import ProductItem from "../../components/ProductItem/ProductItem";
+import React from 'react';
 import "./Home.css";
 
 const Home = (props) => {
