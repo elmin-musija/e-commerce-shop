@@ -5,7 +5,7 @@ import "../../components/CustomButton/CustomButton.css"
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Footer from "../../components/Footer/Footer"
 import FilterHeader from "../../components/FilterHeader/FilterHeader"
-import FooterSticky from "../../components/Footer/FooterSticky";
+
 
 const ProductDetails = (props) => {
 	const { id } = useParams();
