@@ -4,24 +4,28 @@
 }
 
 .product-item {
-  width: 154px;
-  height: 194px;
+  width: 144px;
+  height: 270px;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 }
 .product-item__img {
-  width: 138px;
+  width: 128px;
   height: 110px;
   background-color: #f0f3f8;
   border-radius: 12px;
   border: none;
   margin: 8px 8px 4px 8px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .product-item__p__rating {
   font-size: 9px;
   color: #828b9a;
-  margin: 0 0 0 11px;
+  margin: 0 0 0px 11px;
   line-height: 16px;
   font-weight: 400;
   font-family: Poppins;
@@ -29,6 +33,7 @@
 
 .product-item__p__description {
   font-size: 14px;
+  height: 100px;
   margin: 0 0 3px 11px;
   line-height: 20px;
   font-weight: 600;
@@ -37,9 +42,9 @@
 .product-item__p__price {
   font-size: 12px;
   color: #364fd4;
-  margin: 0 0 0 11px;
+  margin: 0 0px 5px 13px;
   line-height: 18px;
-  font-weight: 500;
+  font-weight: 700;
   font-family: Poppins;
 }
 
@@ -58,7 +63,7 @@
 .product-item_star {
   width: 9px;
   height: 9px;
-  margin: 0 3px -1px 0;
+  margin: 0 3px 0px 0;
   /* minus pixel ist defintiv nicht die beste Lösung um den gelben Stern wie in der Vorlage neben der Ratingzahl zu platzieren */
 }
 

@@ -1,12 +1,12 @@
 .filter-button {
-	width: 56px;
-	height: 56px;
+  width: 46px;
+  height: 56px;
 }
 .filter-button__button {
-	padding: 16px;
-	border-radius: 12px;
+  padding: 16px;
+  border-radius: 12px;
 }
 .filter-button__logo {
-	width: 24px;
-	height: 24px;
+  width: 24px;
+  height: 24px;
 }

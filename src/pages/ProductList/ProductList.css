@@ -19,6 +19,8 @@
   justify-items: center;
   position: relative;
   overflow: scroll;
+  column-gap: 0px;
+  row-gap: 20px;
 }
 .product-list-props::-webkit-scrollbar {
   width: 0;
