@@ -4,14 +4,18 @@ import AppContext from "../../context/AppContext";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
-import ProductItem from "../../components/ProductItem/ProductItem"
+import ProductItem from "../../components/ProductItem/ProductItem";
 import "./Home.css";
 
 const Home = (props) => {
-	const [data, setData] = useState([])
-	const { getUserSearchString, setUserSearchString } = useContext(AppContext);
-	const { getFetchAllItemsState, getFetchAllItemsData } =
-		useContext(AppContext);
+	const [data, setData] = useState([]);
+
+	const {
+		getUserSearchString,
+		getUserSearchButtonClicked,
+		resetUserSearchButtonClicked,
+		getFetchAllItemsData,
+	} = useContext(AppContext);
 
 		useEffect(() => {
 				const result = getFetchAllItemsData();
@@ -40,18 +44,13 @@ const Home = (props) => {
 		  };
 
 	const redirectToProductDetails = () => {
-		if (getUserSearchString() !== "") {
+		if (getUserSearchString() !== "" && getUserSearchButtonClicked()) {
+			resetUserSearchButtonClicked();
 			return <Navigate to={"/productlist"} />;
 		}
 	};
 
-	const displayFetchDataBrand = () => {
-		if (getFetchAllItemsState() === true) {
-			return getFetchAllItemsData().map((element, index) => {
-				return <p key={index}>{element.brand}</p>;
-			});
-		}
-	};
+	useEffect(redirectToProductDetails, []);
 
 	return (
 		<div className="home">
@@ -63,9 +62,17 @@ const Home = (props) => {
 				<button className="home__button-second" onClick={sortAtoZ}>A - Z</button>
 			</div>
 			<div className="home__grid">
-				{data.map((elt, index) =>{
-				return <ProductItem key={index} pr_image={elt.images[0]} pr_alt={elt.brand} pr_rating={elt.rating} pr_price={elt.price}/>
-			})}
+				{data.map((elt, index) => {
+					return (
+						<ProductItem
+							key={index}
+							pr_image={elt.images[0]}
+							pr_alt={elt.brand}
+							pr_rating={elt.rating}
+							pr_price={elt.price}
+						/>
+					);
+				})}
 			</div>
 			<Footer />
 			{redirectToProductDetails()}
