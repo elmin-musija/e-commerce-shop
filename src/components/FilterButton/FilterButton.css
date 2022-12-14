@@ -1,12 +1,20 @@
 .filter-button {
 	width: 56px;
 	height: 56px;
+	transition: all 75ms;
 }
 .filter-button__button {
 	padding: 16px;
 	border-radius: 12px;
+	cursor: pointer;
 }
 .filter-button__logo {
 	width: 24px;
 	height: 24px;
+}
+.filter-button:hover {
+	transform: scale(1.1);
+}
+.filter-button:active {
+	transform: scale(0.9);
 }
