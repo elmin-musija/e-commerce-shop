@@ -1,4 +1,3 @@
-
 .product-list {
 	position: relative;
 	width: 100%;
@@ -7,18 +6,18 @@
 	overflow-y: scroll;
 }
 
-.product-list::-webkit-scrollbar{
+.product-list::-webkit-scrollbar {
 	width: 0;
 }
 
-.product-list__p{
+.product-list__p {
 	margin-left: 24px;
 	margin-bottom: 23px;
 	font-size: 1.4rem;
-	color: #B9C1CC;
+	color: #b9c1cc;
 }
 
-.product-list-props{
+.product-list-props {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-items: center;

@@ -1,21 +1,20 @@
 .product-list__footer {
-    position: sticky;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 375px;
-    min-height: 82px;
-    border-top: 1px solid rgba(128, 128, 128, 0.188) ;
-    border-radius: 32px 32px 0px 0px;
-    background-color: white;
-
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 375px;
+	min-height: 82px;
+	border-top: 1px solid rgba(128, 128, 128, 0.188);
+	border-radius: 32px 32px 0px 0px;
+	background-color: white;
 }
 
 .footer__home-icon {
-    margin-left: 61px;
+	margin-left: 61px;
 }
 
 .footer__search-icon {
-    margin-right: 61px;
+	margin-right: 61px;
 }
