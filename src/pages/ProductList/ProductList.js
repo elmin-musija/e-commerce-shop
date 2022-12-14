@@ -42,7 +42,7 @@ const ProductList = (props) => {
 						<ProductItem
 							key={index}
 							pr_image={element.images[0]}
-							pr_description={element.title}
+							pr_title={element.title}
 							pr_alt={element.brand}
 							pr_rating={element.rating}
 							pr_price={element.price}

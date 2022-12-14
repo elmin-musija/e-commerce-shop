@@ -5,7 +5,6 @@ import "../../components/CustomButton/CustomButton.css";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Footer from "../../components/Footer/Footer";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
-import FooterSticky from "../../components/Footer/FooterSticky";
 
 const ProductDetails = (props) => {
 	const { id } = useParams();
@@ -63,7 +62,7 @@ const ProductDetails = (props) => {
 					</div>
 					<div className="product-details__container-description">
 						<h4 className="product-details__head-description">Description</h4>
-						<p className="product-details__description">{data.description}</p>
+						<p className="product-details__description">{data.description.substring(0, 120) + "..."}</p>
 						<CustomButton
 							children="Add to Cart"
 							pr_class="custom-button__product-details"
