@@ -10,6 +10,15 @@ const ProductDetails = (props) => {
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
+	const [count, setCount] = useState(0)
+
+	const handlePlusClick = () => {
+		setCount(count + 1);
+	  };
+
+	const handleMinusClick = () => {	
+		setCount(count - 1);
+	};
 
 	useEffect(() => {
 		setLoading(true);
@@ -29,8 +38,6 @@ const ProductDetails = (props) => {
 		);
 	}
 
-	console.log(data);
-
 	return (
 		<section className="product-details__section">
 			<FilterHeader name={data.title} />
@@ -49,9 +56,9 @@ const ProductDetails = (props) => {
 							<p className="product-details__rating">⭐️ {data.rating}</p>
 						</div>
 						<div className="product-details__buttons">
-							<button className="product-details__button-minus">-</button>
-							<p>1</p>
-							<button className="product-details__button-plus">+</button>
+							<button onClick={handleMinusClick} className="product-details__button-minus">-</button>
+							<p>{count}</p>
+							<button onClick={handlePlusClick} className="product-details__button-plus">+</button>
 						</div>
 					</div>
 					<div className="product-details__price-space-container">
