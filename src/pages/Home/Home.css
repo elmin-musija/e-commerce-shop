@@ -3,8 +3,44 @@
 	width: 100%;
 	height: 100%;
 }
+.home__grid{
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: center;
+	position: relative;
+	overflow: scroll;
+}
 
+.home__grid::-webkit-scrollbar {
+	width: 0;
+}
 .home__h1 {
 	font-size: 2.8rem;
 	padding: 50px 76px 22px 23px;
+}
+
+.home__button-container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px 20px 16px;
+}
+
+.home__button-one{
+ color:#1E2126;
+ background-color: white;
+ border: none;
+ font-size: 1.6rem;
+}
+.home__button-second{
+color: #B9C1CC;
+background-color: white;
+border: none;	
+font-size: 1.2rem;
+}
+
+.home__button-second:hover {
+	background-color: #b9c1cc11;
+	color: lightblue;
 }
