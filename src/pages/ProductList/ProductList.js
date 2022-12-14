@@ -28,26 +28,24 @@ const ProductList = (props) => {
 	}, [getUserSearchString()]);
 
 	return (
-		<>
+		<div className="product-list">
 			<SearchBar className="product-list__searchbar" />
-			<div className="product-list">
-				<p className="product-list__p">Sort by: </p>
-				<div className="product-list-props">
-					{data.map((element, index) => {
-						return (
-							<ProductItem
-								key={index}
-								pr_image={element.images[0]}
-								pr_alt={element.brand}
-								pr_rating={element.rating}
-								pr_price={element.price}
-							/>
-						);
-					})}
-				</div>
+			<p className="product-list__p">Sort by: </p>
+			<div className="product-list-props">
+				{data.map((element, index) => {
+					return (
+						<ProductItem
+							key={index}
+							pr_image={element.images[0]}
+							pr_alt={element.brand}
+							pr_rating={element.rating}
+							pr_price={element.price}
+						/>
+					);
+				})}
 			</div>
 			<FooterSticky />
-		</>
+		</div>
 	);
 };
 
