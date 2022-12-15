@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }) => {
 		fetchState: false,
 		fetchData: [],
 	});
+	const [selectedFilter, setSelectedFilter] = useState([]);
 
 	const setSearchButtonToggle = () => {
 		setSearchButton((prevState) => !prevState);
@@ -116,6 +117,32 @@ export const AppContextProvider = ({ children }) => {
 		return JSON.parse(localStorage.getItem("allCategoriesArray"));
 	};
 
+	const setUserSelectedFilter = (paramFilter) => {
+		setSelectedFilter((prevState) => [...prevState, paramFilter]);
+		localStorage.setItem(
+			"selectedFilter",
+			JSON.stringify([...selectedFilter, paramFilter])
+		);
+	};
+	const getUserSelectedFilter = () => {
+		return JSON.stringify(localStorage.getItem("selectedFilter"));
+	};
+	const checkUserSelectedFilter = (paramFilter) => {
+		return selectedFilter.filter((element) => element === paramFilter).length;
+	};
+	const removeUserSelectedFilter = (paramFilter) => {
+		const tmpArray = [...selectedFilter];
+		const index = tmpArray.indexOf(paramFilter);
+		if (index > -1) {
+			tmpArray.splice(index, 1);
+			setSelectedFilter([...tmpArray]);
+		}
+		localStorage.setItem("selectedFilter", JSON.stringify([...tmpArray]));
+	};
+	const resetUserSelectedFilter = () => {
+		setSelectedFilter([]);
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -135,6 +162,11 @@ export const AppContextProvider = ({ children }) => {
 				getCategoriesArray,
 				setUserSelectedCategory,
 				getUserSelectedCategory,
+				setUserSelectedFilter,
+				getUserSelectedFilter,
+				checkUserSelectedFilter,
+				resetUserSelectedFilter,
+				removeUserSelectedFilter,
 			}}
 		>
 			{children}
