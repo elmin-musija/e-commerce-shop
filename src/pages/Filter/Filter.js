@@ -1,7 +1,7 @@
+import { useContext } from "react";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
 import CustomFilterButton from "../../components/CustomFilterButton/CustomFilterButton";
 import CustomButton from "../../components/CustomButton/CustomButton";
-import { useContext } from "react";
 import AppContext from "../../context/AppContext";
 import "./Filter.css";
 

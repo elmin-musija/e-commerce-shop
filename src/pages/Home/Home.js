@@ -1,12 +1,10 @@
-import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { React, useContext, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
 import ProductItem from "../../components/ProductItem/ProductItem";
-import React from "react";
-import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./Home.css";
 
