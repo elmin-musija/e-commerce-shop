@@ -80,7 +80,7 @@ const Home = (props) => {
 			<div className="home__grid">
 				{data.map((elt, index) => {
 					return (
-						<Link to={`/productdetails/${elt.id}`}>
+						<Link key={index} to={`/productdetails/${elt.id}`}>
 							<ProductItem
 								key={index}
 								pr_title={elt.title}
