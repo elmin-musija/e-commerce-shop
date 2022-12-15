@@ -19,7 +19,7 @@ const onClickHandler = () => {
         <Link to="/cart">
             <div className="footer__cart">
                 <img src={cart} alt="cart-logo" />
-                <p className="footer__p__cart">{cartItems.length /3}</p>
+                <p className="footer__p__cart">{cartItems.length}</p>
             </div>
         </Link>
         <Link onClick={onClickHandler}>
