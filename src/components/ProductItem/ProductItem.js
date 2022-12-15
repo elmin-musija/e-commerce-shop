@@ -1,6 +1,6 @@
-import "./ProductItem.css";
 import { ReactComponent as YellowStar } from "../../img/YellowStar.svg";
 import { ReactComponent as RoundBluePlusButton } from "../../img/RoundBluePlusButton.svg";
+import "./ProductItem.css";
 
 const ProductItem = (props) => {
 	return (
