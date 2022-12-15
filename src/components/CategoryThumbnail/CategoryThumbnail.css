@@ -2,13 +2,25 @@
 	width: 6rem;
 	height: 6rem;
 	margin-bottom: 0.8rem;
+	margin-top: 5px;
 	border-radius: 10px;
+	transition: all 75ms;
+}
+
+.category-thumbnail__image:hover {
+	transform: scale(1.1);
 }
 
 .category-subhead {
 	letter-spacing: 0.4px;
 	text-align: center;
+	transition: all 75ms;
 }
+
+.category-subhead:hover {
+	transform: scale(1.05);
+}
+
 .category-thumbnail__link {
 	color: black;
 	text-decoration: none;

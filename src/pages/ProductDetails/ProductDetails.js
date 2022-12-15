@@ -15,7 +15,6 @@ const ProductDetails = (props) => {
 	const [data, setData] = useState([]);
 	const [count, setCount] = useState(1);
 	const [stock, setStock] = useState("");
-	const [price, setPrice] = useState(0);
 
 	const { cartItems, setCartItems } = useContext(AppContext);
 
@@ -46,7 +45,6 @@ const ProductDetails = (props) => {
 			stock: count,
 			prices: data.price,
 		};
-		setPrice(Number(data.price * count));
 		double.push(objects);
 		setCartItems(double);
 	};
