@@ -26,13 +26,13 @@ const CustomFilterButton = (props) => {
 			checkUserSelectedFilter(props.children) === 0
 		) {
 			setUserSelectedFilter(props.children);
-			console.log(localStorage.selectedFilter);
+			// console.log(localStorage.selectedFilter);
 		} else if (
 			filterButtonState === true &&
 			checkUserSelectedFilter(props.children) > 0
 		) {
 			removeUserSelectedFilter(props.children);
-			console.log(localStorage.selectedFilter);
+			// console.log(localStorage.selectedFilter);
 		}
 		setFilterButtonState((prevState) => !prevState);
 	};
