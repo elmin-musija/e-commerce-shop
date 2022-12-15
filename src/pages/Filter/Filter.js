@@ -1,11 +1,11 @@
+import { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
 import CustomFilterButton from "../../components/CustomFilterButton/CustomFilterButton";
 import CustomFilterButtonPrice from "../../components/CustomFilterButtonPrice/CustomFilterButtonPrice";
 import CustomButton from "../../components/CustomButton/CustomButton";
-import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 import "./Filter.css";
-import { Navigate } from "react-router-dom";
 
 const Filter = (props) => {
 	const {
@@ -15,6 +15,7 @@ const Filter = (props) => {
 		resetUserSelectedFilter,
 		getUserSelectedFilterPrice,
 	} = useContext(AppContext);
+
 	const [filterButtonState, setFilterButtonState] = useState(false);
 
 	const mapCategoryFilter = () => {

@@ -1,20 +1,18 @@
-import { useContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { React, useContext, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
 import Footer from "../../components/Footer/Footer";
 import ProductItem from "../../components/ProductItem/ProductItem";
-import React from "react";
-import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./Home.css";
 
 const Home = (props) => {
 	const [data, setData] = useState([]);
+	const navigate = useNavigate();
 
 	const {
-		cartItems,
 		getUserSearchString,
 		getUserSearchButtonClicked,
 		resetUserSearchButtonClicked,
@@ -27,7 +25,7 @@ const Home = (props) => {
 			return b.rating - a.rating;
 		});
 		setData(result);
-	}, [getFetchAllItemsData, setData]);
+	}, [getFetchAllItemsData]);
 
 	const sortPopular = (event) => {
 		event.preventDefault();
@@ -47,18 +45,23 @@ const Home = (props) => {
 		setData(sortedData);
 	};
 
-	const redirectToProductDetails = () => {
+	useEffect(() => {
 		if (getUserSearchString() !== "" && getUserSearchButtonClicked()) {
+			console.log("call useEffect");
 			resetUserSearchButtonClicked();
-			return <Navigate to={`/productlist/search/${getUserSearchString()}`} />;
+			redirectToProductList(true);
+		}
+		return () => {
+			console.log("clean-up-function");
+		};
+	}, [getUserSearchButtonClicked, getUserSearchString]);
+
+	const redirectToProductList = (paramReturn) => {
+		if (paramReturn) {
+			console.log("redirect");
+			navigate(`/productlist/search/${getUserSearchString()}`);
 		}
 	};
-
-	useEffect(redirectToProductDetails, [
-		getUserSearchString,
-		getUserSearchButtonClicked,
-		resetUserSearchButtonClicked,
-	]);
 
 	return (
 		<div className="home">
@@ -84,7 +87,7 @@ const Home = (props) => {
 			<div className="home__grid">
 				{data.map((elt, index) => {
 					return (
-						<Link to={`/productdetails/${elt.id}`}>
+						<Link key={index} to={`/productdetails/${elt.id}`}>
 							<ProductItem
 								key={index}
 								pr_title={elt.title}
@@ -98,7 +101,6 @@ const Home = (props) => {
 				})}
 			</div>
 			<Footer />
-			{redirectToProductDetails()}
 		</div>
 	);
 };

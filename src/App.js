@@ -12,90 +12,83 @@ import "./App.css";
 
 function App() {
 	return (
-	<div className="App">
-		<div className="tablet">
-			<div className="content">
-			<AppContextProvider>
-				<BrowserRouter>
-					<Routes>
-						<Route
-							path="/"
-							element={
-								<PageWrapper>
-									<Splash />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/onboarding"
-							element={
-								<PageWrapper>
-									<Onboarding />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/home"
-							element={
-								<PageWrapper>
-									<Home />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/filter"
-							element={
-								<PageWrapper>
-									<Filter />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/productlist/search/:search"
-							element={
-								<PageWrapper>
-									<ProductList />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/productlist/category/:category"
-							element={
-								<PageWrapper>
-									<ProductList />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/productlist/filter/:filter"
-							element={
-								<PageWrapper>
-									<ProductList />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/productdetails/:id"
-							element={
-								<PageWrapper>
-									<ProductDetails />
-								</PageWrapper>
-							}
-						></Route>
-						<Route
-							path="/cart"
-							element={
-								<PageWrapper>
-									<Cart />
-								</PageWrapper>
-							}
-						></Route>
-					</Routes>
-				</BrowserRouter>
-			</AppContextProvider>
+		<div className="App">
+			<div className="tablet">
+				<div className="content">
+					<AppContextProvider>
+						<BrowserRouter>
+							<Routes>
+								<Route
+									path="/"
+									element={
+										<PageWrapper>
+											<Splash />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/onboarding"
+									element={
+										<PageWrapper>
+											<Onboarding />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/home"
+									element={
+										<PageWrapper>
+											<Home />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/filter"
+									element={
+										<PageWrapper>
+											<Filter />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/productlist/search/:search"
+									element={
+										<PageWrapper>
+											<ProductList />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/productlist/category/:category"
+									element={
+										<PageWrapper>
+											<ProductList />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/productdetails/:id"
+									element={
+										<PageWrapper>
+											<ProductDetails />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
+									path="/cart"
+									element={
+										<PageWrapper>
+											<Cart />
+										</PageWrapper>
+									}
+								></Route>
+							</Routes>
+						</BrowserRouter>
+					</AppContextProvider>
+				</div>
+				>>>>>>> main
 			</div>
 		</div>
-	</div>
 	);
 }
 

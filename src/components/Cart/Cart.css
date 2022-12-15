@@ -46,19 +46,21 @@
     
 }
 
-.cart__button button {
+.cart__button_delete {
+    margin: 0 10px;
     padding: 5px 20px;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     border-radius: 6px;
     border: none;
     color: #fff;
-    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background: linear-gradient(180deg, #f7574b 0%, #f63636 100%);
     background-origin: border-box;
     box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    cursor: pointer;
 }
 
 .cart__button button:focus {
@@ -66,3 +68,18 @@
   outline: 0;
 }
 
+.cart__button_buy {
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: linear-gradient(to right top, #364fd4, #2462e1, #0c75ec, #0086f6, #0097fe);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+}

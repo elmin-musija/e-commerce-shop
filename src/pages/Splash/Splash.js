@@ -16,26 +16,29 @@ const Splash = (props) => {
 		setFetchCategoryAll,
 	} = useContext(AppContext);
 
-	const fetchFunctionAllItems = () => {
-		setFetchAllItems(false, []);
-		fetch("https://dummyjson.com/products/?limit=100")
-			.then((response) => response.json())
-			.then((allItems) => {
-				setFetchAllItems(true, allItems.products);
-			});
-	};
+	useEffect(() => {
+		const fetchFunctionAllItems = () => {
+			// setFetchAllItems(false, []);
+			fetch("https://dummyjson.com/products/?limit=100")
+				.then((response) => response.json())
+				.then((allItems) => {
+					setFetchAllItems(true, allItems.products);
+				});
+		};
+		fetchFunctionAllItems();
+	}, []);
 
-	const fetchFunctionAllCategories = () => {
-		setFetchCategoryAll(false, []);
-		fetch("https://dummyjson.com/products/categories/")
-			.then((response) => response.json())
-			.then((allItems) => {
-				setFetchCategoryAll(true, allItems);
-			});
-	};
-
-	useEffect(fetchFunctionAllItems, []);
-	useEffect(fetchFunctionAllCategories, []);
+	useEffect(() => {
+		const fetchFunctionAllCategories = () => {
+			// setFetchCategoryAll(false, []);
+			fetch("https://dummyjson.com/products/categories/")
+				.then((response) => response.json())
+				.then((allItems) => {
+					setFetchCategoryAll(true, allItems);
+				});
+		};
+		fetchFunctionAllCategories();
+	}, []);
 
 	const redirectToOnboarding = () => {
 		return <Navigate to="/onboarding" />;
