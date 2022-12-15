@@ -7,6 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import React from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import "./Home.css";
 
 const Home = (props) => {
@@ -60,10 +61,18 @@ const Home = (props) => {
 			<SearchBar />
 			<CategoryBar />
 			<div className="home__button-container">
-				<button className="home__button-one" onClick={sortPopular}>
+				<button
+					key={uuidv4()}
+					className="home__button-one"
+					onClick={sortPopular}
+				>
 					Popular
 				</button>
-				<button className="home__button-second" onClick={sortAtoZ}>
+				<button
+					key={uuidv4()}
+					className="home__button-second"
+					onClick={sortAtoZ}
+				>
 					A - Z
 				</button>
 			</div>

@@ -10,6 +10,10 @@
   margin-top: 9.3rem;
   margin-bottom: 4.5rem;
   max-width: 100%;
+  animation-name: infiniteupdown;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .onboarding__h2 {
@@ -34,4 +38,72 @@
   width: 167px;
   height: 37px;
   margin: 0 auto;
+}
+
+@keyframes infiniteupdown {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* .onboarding__button:hover {
+  animation: rotate 0.5s ease-in-out;
+  -webkit-animation: rotate 0.5s ease-in-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(10deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-10deg) translate3d(0, 0, 0);
+    -webkit-transform: rotate(-10deg) translate3d(0, 0, 0);
+    -moz-transform: rotate(-10deg) translate3d(0, 0, 0);
+    -ms-transform: rotate(-10deg) translate3d(0, 0, 0);
+    -o-transform: rotate(-10deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+} */
+
+.onboarding__button:hover {
+  animation: storm 0.6s ease-in-out both;
+  animation-delay: 0.01s;
+}
+
+@keyframes storm {
+  0% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  25% {
+    transform: translate3d(22px, 0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate3d(-8px, 0, 0) translateZ(0);
+  }
+  75% {
+    transform: translate3d(4px, 0, 0) translateZ(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
 }
