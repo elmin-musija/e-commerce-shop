@@ -7,21 +7,24 @@ import { Link, useParams } from "react-router-dom";
 import "./ProductList.css";
 
 const ProductList = (props) => {
+	let result = [];
 	const [data, setData] = useState([]);
 
-	const { search, category } = useParams();
+	const { search, category, filter } = useParams();
 
 	const {
 		getUserSearchString,
 		setUserSearchString,
 		getFetchAllItemsData,
 		resetUserSearchButtonClicked,
+		resetUserSelectedFilter,
+		getUserSelectedFilter,
 	} = useContext(AppContext);
 
 	useEffect(() => {
 		if (search) {
 			if (getUserSearchString() !== "") {
-				const result = getFetchAllItemsData().filter((element) => {
+				result = getFetchAllItemsData().filter((element) => {
 					if (
 						element.title.toLowerCase().includes(getUserSearchString()) ||
 						element.brand.toLowerCase().includes(getUserSearchString()) ||
@@ -30,25 +33,32 @@ const ProductList = (props) => {
 						return element;
 					}
 				});
-				setData(result);
+				// setData(result);
 				setUserSearchString("");
 				resetUserSearchButtonClicked();
 			}
 		}
-	}, [search, getUserSearchString, getFetchAllItemsData]);
+	}, [
+		search,
+		getUserSearchString,
+		getFetchAllItemsData,
+		resetUserSearchButtonClicked,
+		setUserSearchString,
+		result,
+	]);
 
 	useEffect(() => {
 		if (category) {
 			if (getUserSearchString() === "") {
-				const result = getFetchAllItemsData().filter((element) => {
+				result = getFetchAllItemsData().filter((element) => {
 					if (element.category.toLowerCase().includes(category)) {
 						return element;
 					}
 				});
-				setData(result);
+				// setData(result);
 				resetUserSearchButtonClicked();
 			} else if (getUserSearchString() !== "") {
-				const result = getFetchAllItemsData().filter((element) => {
+				result = getFetchAllItemsData().filter((element) => {
 					if (
 						element.category.toLowerCase().includes(category) &&
 						element.title.toLowerCase().includes(getUserSearchString())
@@ -60,7 +70,42 @@ const ProductList = (props) => {
 				resetUserSearchButtonClicked();
 			}
 		}
-	}, [category, getFetchAllItemsData]);
+	}, [
+		category,
+		getFetchAllItemsData,
+		getUserSearchString,
+		resetUserSearchButtonClicked,
+		result,
+	]);
+
+	useEffect(() => {
+		const userSelectedFilter = getUserSelectedFilter();
+		if (filter === "all") {
+			const allItems = getFetchAllItemsData();
+			setData(allItems);
+		} else if (filter === "filter") {
+			const allItems = getFetchAllItemsData();
+			result = allItems.filter((element) => {
+				for (let key of userSelectedFilter) {
+					if (element.brand.includes(key) || element.category.includes(key)) {
+						return true;
+					}
+				}
+			});
+			// setData(result);
+		}
+		// resetUserSelectedFilter();
+	}, [
+		filter,
+		getFetchAllItemsData,
+		getUserSelectedFilter,
+		resetUserSelectedFilter,
+		result,
+	]);
+
+	// useEffect(() => {
+	// 	setData(result);
+	// }, [result]);
 
 	return (
 		<div className="product-list">
@@ -69,7 +114,7 @@ const ProductList = (props) => {
 			<div className="product-list-props">
 				{data.map((element, index) => {
 					return (
-						<Link to={`/productdetails/${element.id}`}>
+						<Link key={index} to={`/productdetails/${element.id}`}>
 							<ProductItem
 								key={index}
 								pr_image={element.images[0]}

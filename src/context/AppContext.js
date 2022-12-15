@@ -17,6 +17,7 @@ export const AppContextProvider = ({ children }) => {
 		fetchData: [],
 	});
 	const [selectedFilter, setSelectedFilter] = useState([]);
+	const [selectedFilterPrice, setSelectedFilterPrice] = useState([]);
 
 	const [cartItems, setCartItems] = useState([]);
 
@@ -126,17 +127,22 @@ export const AppContextProvider = ({ children }) => {
 
 	const setUserSelectedFilter = (paramFilter) => {
 		setSelectedFilter((prevState) => [...prevState, paramFilter]);
-		localStorage.setItem(
-			"selectedFilter",
-			JSON.stringify([...selectedFilter, paramFilter])
-		);
+		// localStorage.setItem(
+		// 	"selectedFilter",
+		// 	JSON.stringify([...selectedFilter, paramFilter])
+		// );
+		localStorage.setItem("selectedFilter", [...selectedFilter, paramFilter]);
 	};
 	const getUserSelectedFilter = () => {
-		return JSON.stringify(localStorage.getItem("selectedFilter"));
+		// return JSON.stringify(localStorage.getItem("selectedFilter"));
+		return String(localStorage.getItem("selectedFilter")).split(",");
 	};
 	const checkUserSelectedFilter = (paramFilter) => {
 		return selectedFilter.filter((element) => element === paramFilter).length;
 	};
+	// const checkUserSelectedPriceFilter = () => {
+	// 	return selectedFilter.filter((element) => element.includes("€").length);
+	// };
 	const removeUserSelectedFilter = (paramFilter) => {
 		const tmpArray = [...selectedFilter];
 		const index = tmpArray.indexOf(paramFilter);
@@ -148,8 +154,41 @@ export const AppContextProvider = ({ children }) => {
 	};
 	const resetUserSelectedFilter = () => {
 		setSelectedFilter([]);
+		localStorage.setItem("selectedFilter", "");
 	};
 
+	/**
+	 * Price filter
+	 */
+
+	const setUserSelectedFilterPrice = (paramFilter) => {
+		setSelectedFilterPrice((prevState) => [...prevState, paramFilter]);
+		localStorage.setItem("selectedFilterPrice", [
+			...selectedFilterPrice,
+			paramFilter,
+		]);
+	};
+	const getUserSelectedFilterPrice = () => {
+		return String(localStorage.getItem("selectedFilterPrice")).split(",");
+	};
+	const checkUserSelectedFilterPrice = (paramFilter) => {
+		return selectedFilterPrice.filter((element) => element === paramFilter)
+			.length;
+	};
+	const removeUserSelectedFilterPrice = (paramFilter) => {
+		const tmpArray = [...selectedFilterPrice];
+		const index = tmpArray.indexOf(paramFilter);
+		if (index > -1) {
+			tmpArray.splice(index, 1);
+			setSelectedFilterPrice([...tmpArray]);
+		}
+		localStorage.setItem("selectedFilterPrice", [...tmpArray]);
+	};
+	const resetUserSelectedFilterPrice = () => {
+		console.log("resetUserSelectedFilterPrice");
+		setSelectedFilterPrice([]);
+		localStorage.setItem("selectedFilterPrice", "");
+	};
 	return (
 		<AppContext.Provider
 			value={{
@@ -175,8 +214,15 @@ export const AppContextProvider = ({ children }) => {
 				setUserSelectedFilter,
 				getUserSelectedFilter,
 				checkUserSelectedFilter,
+				// checkUserSelectedPriceFilter,
 				resetUserSelectedFilter,
 				removeUserSelectedFilter,
+				// Price
+				setUserSelectedFilterPrice,
+				getUserSelectedFilterPrice,
+				checkUserSelectedFilterPrice,
+				removeUserSelectedFilterPrice,
+				resetUserSelectedFilterPrice,
 			}}
 		>
 			{children}

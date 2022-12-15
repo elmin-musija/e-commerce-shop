@@ -27,7 +27,7 @@ const Home = (props) => {
 			return b.rating - a.rating;
 		});
 		setData(result);
-	}, []);
+	}, [getFetchAllItemsData, setData]);
 
 	const sortPopular = (event) => {
 		event.preventDefault();
@@ -54,7 +54,11 @@ const Home = (props) => {
 		}
 	};
 
-	useEffect(redirectToProductDetails, []);
+	useEffect(redirectToProductDetails, [
+		getUserSearchString,
+		getUserSearchButtonClicked,
+		resetUserSearchButtonClicked,
+	]);
 
 	return (
 		<div className="home">

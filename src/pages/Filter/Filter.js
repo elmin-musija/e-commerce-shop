@@ -1,12 +1,21 @@
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
 import CustomFilterButton from "../../components/CustomFilterButton/CustomFilterButton";
+import CustomFilterButtonPrice from "../../components/CustomFilterButtonPrice/CustomFilterButtonPrice";
 import CustomButton from "../../components/CustomButton/CustomButton";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
 import "./Filter.css";
+import { Navigate } from "react-router-dom";
 
 const Filter = (props) => {
-	const { getCategoriesArray } = useContext(AppContext);
+	const {
+		getCategoriesArray,
+		getUserSelectedFilter,
+		resetUserSelectedFilterPrice,
+		resetUserSelectedFilter,
+		getUserSelectedFilterPrice,
+	} = useContext(AppContext);
+	const [filterButtonState, setFilterButtonState] = useState(false);
 
 	const mapCategoryFilter = () => {
 		const tmp = getCategoriesArray();
@@ -40,18 +49,30 @@ const Filter = (props) => {
 			<section>
 				<h4 className="filter-header-style filter-header-margin">Price</h4>
 				<div className="filter-grid-container">
-					<CustomFilterButton className="filter-grid-item ">
+					<CustomFilterButtonPrice
+						pr_val={"0-20"}
+						className="filter-grid-item "
+					>
 						0-20€
-					</CustomFilterButton>
-					<CustomFilterButton className="filter-grid-item ">
+					</CustomFilterButtonPrice>
+					<CustomFilterButtonPrice
+						pr_val={"20-50"}
+						className="filter-grid-item "
+					>
 						20-50€
-					</CustomFilterButton>
-					<CustomFilterButton className="filter-grid-item ">
+					</CustomFilterButtonPrice>
+					<CustomFilterButtonPrice
+						pr_val={"50-100"}
+						className="filter-grid-item "
+					>
 						50-100€
-					</CustomFilterButton>
-					<CustomFilterButton className="filter-grid-item ">
+					</CustomFilterButtonPrice>
+					<CustomFilterButtonPrice
+						pr_val={"100-0"}
+						className="filter-grid-item "
+					>
 						über 100€
-					</CustomFilterButton>
+					</CustomFilterButtonPrice>
 				</div>
 			</section>
 		);
@@ -83,7 +104,33 @@ const Filter = (props) => {
 	};
 
 	const onClickHandler = () => {
-		console.log("Apply Filter");
+		setFilterButtonState((prevState) => !prevState);
+	};
+
+	useEffect(() => {
+		if (filterButtonState === true) {
+			// reset filter buttons
+			resetUserSelectedFilter();
+			resetUserSelectedFilterPrice();
+		}
+	}, [
+		filterButtonState,
+		resetUserSelectedFilter,
+		resetUserSelectedFilterPrice,
+	]);
+
+	const redirectToProductDetails = () => {
+		if (filterButtonState === true) {
+			if (
+				getUserSelectedFilter().length === 0 &&
+				getUserSelectedFilterPrice().length === 0
+			) {
+				resetUserSelectedFilterPrice();
+				return <Navigate to={`/productlist/filter/all`} />;
+			} else {
+				return <Navigate to={`/productlist/filter/filter`} />;
+			}
+		}
 	};
 
 	return (
@@ -99,6 +146,7 @@ const Filter = (props) => {
 				pr_class="filter-custom-button filter-header-style"
 				pr_onClickHandler={onClickHandler}
 			/>
+			{redirectToProductDetails()}
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
-import "../../pages/Filter/Filter.css";
+// import "../../pages/Filter/Filter.css";
 import "./CustomFilterButton.css";
 
 const CustomFilterButton = (props) => {
@@ -8,13 +8,25 @@ const CustomFilterButton = (props) => {
 		setUserSelectedFilter,
 		checkUserSelectedFilter,
 		removeUserSelectedFilter,
+		checkUserSelectedPriceFilter,
 	} = useContext(AppContext);
 
 	const [filterButtonState, setFilterButtonState] = useState(false);
 
 	let tmpClass = "";
+	// if (filterButtonState) {
+	// 	tmpClass += "custom-filter-button clicked ";
+	// } else {
+	// 	tmpClass += "custom-filter-button ";
+	// }
 	if (filterButtonState) {
-		tmpClass += "custom-filter-button clicked ";
+		if (props.children.includes("€")) {
+			if (checkUserSelectedPriceFilter() !== 1) {
+				tmpClass += "custom-filter-button clicked ";
+			}
+		} else {
+			tmpClass += "custom-filter-button clicked ";
+		}
 	} else {
 		tmpClass += "custom-filter-button ";
 	}
@@ -34,6 +46,7 @@ const CustomFilterButton = (props) => {
 			removeUserSelectedFilter(props.children);
 			// console.log(localStorage.selectedFilter);
 		}
+
 		setFilterButtonState((prevState) => !prevState);
 	};
 
