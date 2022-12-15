@@ -4,8 +4,11 @@ import "../../pages/Filter/Filter.css";
 import "./CustomFilterButton.css";
 
 const CustomFilterButton = (props) => {
-	const { setUserSelectedFilter, removeUserSelectedFilter } =
-		useContext(AppContext);
+	const {
+		setUserSelectedFilter,
+		checkUserSelectedFilter,
+		removeUserSelectedFilter,
+	} = useContext(AppContext);
 
 	const [filterButtonState, setFilterButtonState] = useState(false);
 
@@ -18,14 +21,20 @@ const CustomFilterButton = (props) => {
 	tmpClass += props.className !== "" ? props.className : "";
 
 	const onClickHandler = () => {
-		setFilterButtonState((prevState) => !prevState);
-		if (filterButtonState === false) {
+		if (
+			filterButtonState === false &&
+			checkUserSelectedFilter(props.children) === 0
+		) {
 			setUserSelectedFilter(props.children);
-			console.log(`add ${props.children}`);
-		} else if (filterButtonState === true) {
+			console.log(localStorage.selectedFilter);
+		} else if (
+			filterButtonState === true &&
+			checkUserSelectedFilter(props.children) > 0
+		) {
 			removeUserSelectedFilter(props.children);
-			console.log(`remove ${props.children}`);
+			console.log(localStorage.selectedFilter);
 		}
+		setFilterButtonState((prevState) => !prevState);
 	};
 
 	return (

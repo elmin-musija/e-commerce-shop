@@ -127,8 +127,17 @@ export const AppContextProvider = ({ children }) => {
 	const getUserSelectedFilter = () => {
 		return JSON.stringify(localStorage.getItem("selectedFilter"));
 	};
+	const checkUserSelectedFilter = (paramFilter) => {
+		return selectedFilter.filter((element) => element === paramFilter).length;
+	};
 	const removeUserSelectedFilter = (paramFilter) => {
-		//TODO
+		const tmpArray = [...selectedFilter];
+		const index = tmpArray.indexOf(paramFilter);
+		if (index > -1) {
+			tmpArray.splice(index, 1);
+			setSelectedFilter([...tmpArray]);
+		}
+		localStorage.setItem("selectedFilter", JSON.stringify([...tmpArray]));
 	};
 	const resetUserSelectedFilter = () => {
 		setSelectedFilter([]);
@@ -155,6 +164,7 @@ export const AppContextProvider = ({ children }) => {
 				getUserSelectedCategory,
 				setUserSelectedFilter,
 				getUserSelectedFilter,
+				checkUserSelectedFilter,
 				resetUserSelectedFilter,
 				removeUserSelectedFilter,
 			}}
