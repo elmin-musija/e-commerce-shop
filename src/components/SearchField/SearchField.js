@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../../context/AppContext";
 import { ReactComponent as SearchLogo } from "../../img/Search.svg";
 import "./SearchField.css";
@@ -10,6 +10,7 @@ const SearchField = (props) => {
 		setUserSearchButtonClicked,
 		getSearchButtonToggle,
 		setSearchButtonToggle,
+		resetUserSearchButtonClicked,
 	} = useContext(AppContext);
 
 	const inputOnKeyDownHandler = (event) => {
@@ -24,31 +25,29 @@ const SearchField = (props) => {
 			setUserSearchString("");
 		} else {
 			setUserSearchString(event.target.value);
+			resetUserSearchButtonClicked();
 		}
 	};
 
-	const onFocusHandler = () => {
-		setSearchButtonToggle();
-	};
-
-	const setFocusOnSearchfield = () => {
+	useEffect(() => {
 		if (getSearchButtonToggle()) {
-			document.getElementById("input-search").focus();
+			const inputSearch = document.getElementById("input-search");
+			if (inputSearch) {
+				inputSearch.focus();
+			}
 		}
-	};
+	}, [getSearchButtonToggle]);
 
-	const showCurrentSearchString = () => {
+	useEffect(() => {
 		const inputSearch = document.getElementById("input-search");
 		if (getUserSearchString() && inputSearch) {
 			inputSearch.value = getUserSearchString();
 		}
-	};
+	}, [getUserSearchString]);
 
 	return (
 		<div className="search-field">
 			<SearchLogo className="search-field__logo" />
-			{setFocusOnSearchfield()}
-			{showCurrentSearchString()}
 			<input
 				className="search-field__search"
 				type="text"
@@ -58,7 +57,7 @@ const SearchField = (props) => {
 				required
 				onKeyDown={inputOnKeyDownHandler}
 				onChange={inputOnChangeHandler}
-				onFocus={onFocusHandler}
+				onFocus={setSearchButtonToggle}
 			/>
 		</div>
 	);

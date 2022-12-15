@@ -7,8 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
 import AppContext from "../../context/AppContext";
 import LoadingAnimation from "../../components/LoadingAnimation/LoadingAnimation";
-
-
+import { v4 as uuidv4 } from "uuid";
 
 const ProductDetails = (props) => {
 	const { id } = useParams();
@@ -18,8 +17,7 @@ const ProductDetails = (props) => {
 	const [stock, setStock] = useState("");
 	const [price, setPrice] = useState(0);
 
-	const { handleAddToCart } = useContext(AppContext);
-	const { cartItems, setCartItems } = useContext(AppContext)
+	const { cartItems, setCartItems } = useContext(AppContext);
 
 	useEffect(() => {
 		setLoading(true);
@@ -35,36 +33,34 @@ const ProductDetails = (props) => {
 	if (loading) {
 		return (
 			<div className="loader-container">
-				<LoadingAnimation/>
+				<LoadingAnimation />
 			</div>
 		);
 	}
 
 	const handleClick = (event) => {
 		event.preventDefault();
-		const double = [...cartItems]
+		const double = [...cartItems];
 		const objects = {
 			title: data.title,
 			stock: count,
-			prices: data.price
-		}
-		setPrice(Number(data.price * count))
-		double.push(objects)
-		setCartItems(double)
+			prices: data.price,
+		};
+		setPrice(Number(data.price * count));
+		double.push(objects);
+		setCartItems(double);
 	};
 
 	const handlePlusClick = () => {
 		if (count >= stock) {
-		return
-	  } else 
-	  setCount(count + 1);
+			return;
+		} else setCount(count + 1);
 	};
 
-	const handleMinusClick = () => {	
-		if (count <=1) {
-			return
-		} else
-		setCount(count - 1);
+	const handleMinusClick = () => {
+		if (count <= 1) {
+			return;
+		} else setCount(count - 1);
 	};
 
 	return (
@@ -72,33 +68,51 @@ const ProductDetails = (props) => {
 			<FilterHeader name={data.title} />
 			<div className="product-details">
 				<div className="product-details__article">
-					<div className="product-details__img-container">
+					<div key={uuidv4()} className="product-details__img-container">
 						<img
 							className="product-details__img"
 							src={data.images[0]}
 							alt={data.brand}
 						/>
 					</div>
-					<div className="product-details__title-btns-container">
+					<div key={uuidv4()} className="product-details__title-btns-container">
 						<div className="product-details__rating-container">
 							<h4 className="product-details__headline">{data.title}</h4>
 							<p className="product-details__rating">⭐️ {data.rating}</p>
 						</div>
 						<div className="product-details__buttons">
-							<button onClick={handleMinusClick} className="product-details__button-minus">-</button>
+							<button
+								onClick={handleMinusClick}
+								className="product-details__button-minus"
+							>
+								-
+							</button>
 							<p>{count}</p>
-							<button onClick={handlePlusClick} className="product-details__button-plus">+</button>
+							<button
+								onClick={handlePlusClick}
+								className="product-details__button-plus"
+							>
+								+
+							</button>
 						</div>
 					</div>
-					<div className="product-details__price-space-container">
+					<div
+						key={uuidv4()}
+						className="product-details__price-space-container"
+					>
 						<p className="product-details__space">
 							{data.stock} pieces in stock
 						</p>
 						<p className="product-details__price">${data.price}</p>
 					</div>
-					<div className="product-details__container-description">
+					<div
+						key={uuidv4()}
+						className="product-details__container-description"
+					>
 						<h4 className="product-details__head-description">Description</h4>
-						<p className="product-details__description">{data.description.substring(0, 120) + "..."}</p>
+						<p className="product-details__description">
+							{data.description.substring(0, 120) + "..."}
+						</p>
 						<CustomButton
 							pr_onClickHandler={handleClick}
 							children="Add to Cart"
@@ -106,7 +120,7 @@ const ProductDetails = (props) => {
 						/>
 					</div>
 				</div>
-				<Footer/>
+				<Footer />
 			</div>
 		</section>
 	);

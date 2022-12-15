@@ -69,7 +69,7 @@ const ProductList = (props) => {
 			<div className="product-list-props">
 				{data.map((element, index) => {
 					return (
-						<Link to={`/productdetails/${element.id}`}>
+						<Link key={index} to={`/productdetails/${element.id}`}>
 							<ProductItem
 								key={index}
 								pr_image={element.images[0]}

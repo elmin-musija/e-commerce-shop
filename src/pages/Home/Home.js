@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryBar from "../../components/CategoryBar/CategoryBar";
@@ -12,9 +12,9 @@ import "./Home.css";
 
 const Home = (props) => {
 	const [data, setData] = useState([]);
+	const navigate = useNavigate();
 
 	const {
-		cartItems,
 		getUserSearchString,
 		getUserSearchButtonClicked,
 		resetUserSearchButtonClicked,
@@ -27,7 +27,7 @@ const Home = (props) => {
 			return b.rating - a.rating;
 		});
 		setData(result);
-	}, []);
+	}, [getFetchAllItemsData]);
 
 	const sortPopular = (event) => {
 		event.preventDefault();
@@ -47,14 +47,23 @@ const Home = (props) => {
 		setData(sortedData);
 	};
 
-	const redirectToProductDetails = () => {
+	useEffect(() => {
 		if (getUserSearchString() !== "" && getUserSearchButtonClicked()) {
+			console.log("call useEffect");
 			resetUserSearchButtonClicked();
-			return <Navigate to={`/productlist/search/${getUserSearchString()}`} />;
+			redirectToProductList(true);
+		}
+		return () => {
+			console.log("clean-up-function");
+		};
+	}, [getUserSearchButtonClicked, getUserSearchString]);
+
+	const redirectToProductList = (paramReturn) => {
+		if (paramReturn) {
+			console.log("redirect");
+			navigate(`/productlist/search/${getUserSearchString()}`);
 		}
 	};
-
-	useEffect(redirectToProductDetails, []);
 
 	return (
 		<div className="home">
@@ -94,7 +103,6 @@ const Home = (props) => {
 				})}
 			</div>
 			<Footer />
-			{redirectToProductDetails()}
 		</div>
 	);
 };

@@ -21,9 +21,8 @@ export const AppContextProvider = ({ children }) => {
 	const [cartItems, setCartItems] = useState([]);
 
 	const handleAddToCart = (item, number, price) => {
-	  setCartItems([...cartItems, item, number, price]);
-	}  
-	console.log(cartItems);
+		setCartItems([...cartItems, item, number, price]);
+	};
 
 	const setSearchButtonToggle = () => {
 		setSearchButton((prevState) => !prevState);
