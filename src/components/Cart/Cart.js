@@ -7,10 +7,6 @@ const Cart = (props) => {
     const { cartItems } = useContext(AppContext)
     const { setCartItems } = useContext(AppContext)
 
-    useEffect(() => {
-        console.log(cartItems);
-      }, [cartItems]);
-
     const handleClick = (event) => {
         const tmp = [...cartItems]
         event.preventDefault()

@@ -12,7 +12,9 @@ import "./App.css";
 
 function App() {
 	return (
-		<div className="App">
+	<div className="App">
+		<div className="tablet">
+			<div className="content">
 			<AppContextProvider>
 				<BrowserRouter>
 					<Routes>
@@ -83,7 +85,9 @@ function App() {
 					</Routes>
 				</BrowserRouter>
 			</AppContextProvider>
+			</div>
 		</div>
+	</div>
 	);
 }
 
