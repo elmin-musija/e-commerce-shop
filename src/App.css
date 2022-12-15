@@ -13,7 +13,7 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: linear-gradient(to right top, #364fd4, #2462e1, #0c75ec, #0086f6, #0097fe);
+	background-image: radial-gradient(circle, #0097fe, #0086f6, #0c75ec, #2462e1, #364fd4);
 }
 
 .tablet {

@@ -2,6 +2,7 @@ import AppContext from "../../context/AppContext";
 import { useContext, useEffect, useState } from "react";
 import "./Cart.css"
 import Footer from "../Footer/Footer";
+import { Link } from "react-router-dom";
 
 const Cart = (props) => {
     const { cartItems } = useContext(AppContext)
@@ -40,8 +41,11 @@ const Cart = (props) => {
 					);
 				})}          
     </div>
-    <div className="cart__button">                               
-        <button onClick={handleClick}>Delete</button>
+    <div className="cart__button">    
+    <Link to="">
+        <button className="cart__button_buy">Buy Now!</button> 
+    </Link>                          
+        <button className="cart__button_delete" onClick={handleClick}>Delete</button>
     </div>
     <Footer/>
     </section>
