@@ -11,28 +11,6 @@
 	margin: 0 33px 0 33px;
 }
 
-.filter-grid-item {
-	border: none;
-
-	font-family: Poppins;
-	font-size: 1.2rem;
-	font-weight: 500;
-	line-height: 18px;
-	letter-spacing: 0px;
-}
-
-.filter-grid-item:hover {
-	border: none;
-	color: white;
-	font-family: Poppins;
-	font-size: 1.2rem;
-	font-weight: 500;
-	line-height: 18px;
-	letter-spacing: 0.1px;
-	background-color: #364fd4;
-	border-radius: 12px;
-}
-
 .filter-header-style {
 	font-family: Poppins;
 	font-size: 1.6rem;

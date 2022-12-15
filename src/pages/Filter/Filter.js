@@ -40,10 +40,18 @@ const Filter = (props) => {
 			<section>
 				<h4 className="filter-header-style filter-header-margin">Price</h4>
 				<div className="filter-grid-container">
-					<button className="filter-grid-item ">0-20€</button>
-					<button className="filter-grid-item ">20-50€</button>
-					<button className="filter-grid-item ">50-100€</button>
-					<button className="filter-grid-item ">über 100€</button>
+					<CustomFilterButton className="filter-grid-item ">
+						0-20€
+					</CustomFilterButton>
+					<CustomFilterButton className="filter-grid-item ">
+						20-50€
+					</CustomFilterButton>
+					<CustomFilterButton className="filter-grid-item ">
+						50-100€
+					</CustomFilterButton>
+					<CustomFilterButton className="filter-grid-item ">
+						über 100€
+					</CustomFilterButton>
 				</div>
 			</section>
 		);
@@ -62,9 +70,9 @@ const Filter = (props) => {
 		if (tmp.length > 0) {
 			return tmp.map((element, index) => {
 				return (
-					<button key={index} className="filter-grid-item ">
+					<CustomFilterButton key={index} className="filter-grid-item ">
 						{element[0].brand}
-					</button>
+					</CustomFilterButton>
 				);
 			});
 		}
