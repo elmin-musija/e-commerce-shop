@@ -10,6 +10,10 @@
   margin-top: 9.3rem;
   margin-bottom: 4.5rem;
   max-width: 100%;
+  animation-name: infiniteupdown;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .onboarding__h2 {
@@ -34,4 +38,22 @@
   width: 167px;
   height: 37px;
   margin: 0 auto;
+}
+
+@keyframes infiniteupdown {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }

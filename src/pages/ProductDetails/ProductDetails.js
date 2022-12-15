@@ -10,6 +10,8 @@ const ProductDetails = (props) => {
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
+	const [count, setCount] = useState(0);
+	const [stock, setStock] = useState("");
 
 	useEffect(() => {
 		setLoading(true);
@@ -18,8 +20,11 @@ const ProductDetails = (props) => {
 			.then((json) => {
 				setData(json);
 				setLoading(false);
+				setStock(json.stock);
 			});
 	}, [id]);
+
+console.log(stock);
 
 	if (loading) {
 		return (
@@ -29,7 +34,19 @@ const ProductDetails = (props) => {
 		);
 	}
 
-	console.log(data);
+	const handlePlusClick = () => {
+		if (count >= stock) {
+		return
+	  } else 
+	  setCount(count + 1);
+	};
+
+	const handleMinusClick = () => {	
+		if (count <=0) {
+			return
+		} else
+		setCount(count - 1);
+	};
 
 	return (
 		<section className="product-details__section">
@@ -49,9 +66,9 @@ const ProductDetails = (props) => {
 							<p className="product-details__rating">⭐️ {data.rating}</p>
 						</div>
 						<div className="product-details__buttons">
-							<button className="product-details__button-minus">-</button>
-							<p>1</p>
-							<button className="product-details__button-plus">+</button>
+							<button onClick={handleMinusClick} className="product-details__button-minus">-</button>
+							<p>{count}</p>
+							<button onClick={handlePlusClick} className="product-details__button-plus">+</button>
 						</div>
 					</div>
 					<div className="product-details__price-space-container">

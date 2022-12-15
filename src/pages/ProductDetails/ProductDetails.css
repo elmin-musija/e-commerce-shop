@@ -66,6 +66,7 @@
 	color: white;
 	border: none;
 	font-size: 1.8rem;
+	cursor: pointer;
 }
 
 .product-details__button-plus:hover {
@@ -84,6 +85,8 @@
 	color: white;
 	border: none;
 	font-size: 1.8rem;
+	cursor: pointer;
+	margin-left: 5px;
 }
 
 .product-details__price-space-container{
