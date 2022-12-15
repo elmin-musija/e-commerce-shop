@@ -13,7 +13,7 @@
 }
 
 .product-list-props {
-  height: 100%;
+  height: 85%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;

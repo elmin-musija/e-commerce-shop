@@ -20,8 +20,8 @@ export const AppContextProvider = ({ children }) => {
 
 	const [cartItems, setCartItems] = useState([]);
 
-	const handleAddToCart = (item, number) => {
-	  setCartItems([...cartItems, item, number]);
+	const handleAddToCart = (item, number, price) => {
+	  setCartItems([...cartItems, item, number, price]);
 	}  
 	console.log(cartItems);
 
@@ -171,6 +171,7 @@ export const AppContextProvider = ({ children }) => {
 				getUserSelectedCategory,
 				handleAddToCart,
 				cartItems,
+				setCartItems,
 				setUserSelectedFilter,
 				getUserSelectedFilter,
 				checkUserSelectedFilter,

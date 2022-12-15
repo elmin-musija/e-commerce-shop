@@ -6,7 +6,8 @@ import CustomButton from "../../components/CustomButton/CustomButton";
 import Footer from "../../components/Footer/Footer";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
 import AppContext from "../../context/AppContext";
-import Cart from "../../components/Cart/Cart";
+
+
 
 const ProductDetails = (props) => {
 	const { id } = useParams();
@@ -16,7 +17,7 @@ const ProductDetails = (props) => {
 	const [stock, setStock] = useState("");
 
 	const { handleAddToCart } = useContext(AppContext);
-	
+	const { cartItems, setCartItems } = useContext(AppContext)
 
 	useEffect(() => {
 		setLoading(true);
@@ -36,10 +37,10 @@ const ProductDetails = (props) => {
 			</div>
 		);
 	}
-
+	const priceCart = data.price * count
 	const handleClick = (event) => {
 		event.preventDefault();
-		handleAddToCart(data.title, `${count} pieces`)
+		handleAddToCart(data.title, `${count} pieces`, `${priceCart} $`)
 	};
 
 	const handlePlusClick = () => {
@@ -95,7 +96,7 @@ const ProductDetails = (props) => {
 						/>
 					</div>
 				</div>
-				<Footer />
+				<Footer/>
 			</div>
 		</section>
 	);

@@ -7,7 +7,7 @@ import { useContext } from "react";
 import AppContext from "../../context/AppContext";
 
 const Footer = (props) => {
-const {setSearchButtonToggle} = useContext(AppContext)
+const {setSearchButtonToggle, cartItems} = useContext(AppContext)
 const onClickHandler = () => {
     setSearchButtonToggle()
 }
@@ -17,7 +17,10 @@ const onClickHandler = () => {
             <FooterHomeBtn className="footer__home-icon"/>
         </Link>
         <Link to="/cart">
-            <img src={cart} alt="cart-logo" />
+            <div className="footer__cart">
+                <img src={cart} alt="cart-logo"  />
+                <p className="footer__p__cart">{cartItems.length /3}</p>
+            </div>
         </Link>
         <Link onClick={onClickHandler}>
             <FooterSearchBtn className="footer__search-icon"/>

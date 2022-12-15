@@ -18,3 +18,13 @@
 .footer__search-icon {
     margin-right: 61px;
 }
+
+.footer__cart {
+    display: flex;
+}
+
+.footer__p__cart{
+    font-size: 1.4rem;
+    padding-left: 1px;
+    color: red;
+}

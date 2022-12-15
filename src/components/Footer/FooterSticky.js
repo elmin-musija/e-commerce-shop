@@ -7,7 +7,7 @@ import { useContext } from "react";
 import AppContext from "../../context/AppContext";
 
 const FooterSticky = () => {
-const {setSearchButtonToggle} = useContext(AppContext)
+const {setSearchButtonToggle, cartItems} = useContext(AppContext)
 const onClickHandler = () => {
     setSearchButtonToggle()
 }
@@ -16,8 +16,11 @@ const onClickHandler = () => {
         <Link to="/home">
             <FooterHomeBtn className="footer__home-icon"/>
         </Link>
-        <Link to="/home">
-            <img src={cart} alt="cart-logo" />
+        <Link to="/cart">
+            <div className="footer__cart">
+                <img src={cart} alt="cart-logo" />
+                <p className="footer__p__cart">{cartItems.length /3}</p>
+            </div>
         </Link>
         <Link onClick={onClickHandler}>
             <FooterSearchBtn className="footer__search-icon"/>

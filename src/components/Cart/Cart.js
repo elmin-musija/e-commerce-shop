@@ -5,32 +5,36 @@ import Footer from "../Footer/Footer";
 
 const Cart = (props) => {
     const { cartItems } = useContext(AppContext)
+    const { setCartItems } = useContext(AppContext)
 
     useEffect(() => {
         console.log(cartItems);
       }, [cartItems]);
 
     const handleClick = (event) => {
+        const tmp = [...cartItems]
         event.preventDefault()
-        const lastTwoItemsIndex = cartItems.length - 2;
-        cartItems.splice(lastTwoItemsIndex, 2);
+        const lastTwoItemsIndex = tmp.length - 3;
+        tmp.splice(lastTwoItemsIndex, 3);
+        setCartItems(tmp)
     }
 
   return (
-    <section>
+    <section className="cart__grid__section">
+        <h2>Cart</h2>
     <div className="cart__grid">
        {cartItems.map((elt, index) => {
 					return (
-                        <div key={index} className="cart__item">
-						    <p>{elt}</p>
-                        </div>    
+          <div key={index} className="cart__item">
+						<p>{elt}</p>
+          </div>    
 					);
 				})}          
     </div>
     <div className="cart__button">                               
         <button onClick={handleClick}>⎯</button>
     </div>
-    <Footer />
+    <Footer/>
     </section>
   );
 };

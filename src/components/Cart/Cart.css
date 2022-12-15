@@ -1,10 +1,28 @@
-.cart__grid {
+.cart__grid__section{
     position: relative;
     height: 100%;
+    width: 100%;
+}
+.cart__grid__section h2{
+    text-align: center;
+    font-size: 2.4rem;
+    padding: 10px;
+}
+
+.cart__grid {
+    height: 80%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: end;
+    align-items: center;
+    margin: 10px 30px;
+    gap: 10px;
+    position: relative;
+	overflow: scroll;
+}
+.cart__grid::-webkit-scrollbar{
+    width: 0;
 }
 
 .cart__item {

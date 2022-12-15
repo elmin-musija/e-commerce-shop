@@ -14,6 +14,7 @@ const Home = (props) => {
 	const [data, setData] = useState([]);
 
 	const {
+		cartItems,
 		getUserSearchString,
 		getUserSearchButtonClicked,
 		resetUserSearchButtonClicked,
