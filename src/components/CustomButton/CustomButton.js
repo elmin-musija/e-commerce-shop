@@ -1,7 +1,9 @@
 import "./CustomButton.css";
+
+
 const CustomButton = (props) => {
   return (
-    <button className={`custom-button ${props.pr_class}`}>
+    <button onClick={props.pr_onClickHandler} className={`custom-button ${props.pr_class}`}>
       {props.children}
     </button>
   );

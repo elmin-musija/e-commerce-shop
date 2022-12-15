@@ -7,6 +7,7 @@ import Filter from "./pages/Filter/Filter";
 import ProductList from "./pages/ProductList/ProductList";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import PageWrapper from "./components/PageWrapper/PageWrapper";
+import Cart from "./components/Cart/Cart";
 import "./App.css";
 
 function App() {
@@ -68,6 +69,14 @@ function App() {
 							element={
 								<PageWrapper>
 									<ProductDetails />
+								</PageWrapper>
+							}
+						></Route>
+						<Route
+							path="/cart"
+							element={
+								<PageWrapper>
+									<Cart />
 								</PageWrapper>
 							}
 						></Route>

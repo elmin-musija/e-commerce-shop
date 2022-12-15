@@ -17,6 +17,13 @@ export const AppContextProvider = ({ children }) => {
 		fetchData: [],
 	});
 
+	const [cartItems, setCartItems] = useState([]);
+
+	const handleAddToCart = (item, number) => {
+	  setCartItems([...cartItems, item, number]);
+	}  
+	console.log(cartItems);
+
 	const setSearchButtonToggle = () => {
 		setSearchButton((prevState) => !prevState);
 	};
@@ -135,6 +142,8 @@ export const AppContextProvider = ({ children }) => {
 				getCategoriesArray,
 				setUserSelectedCategory,
 				getUserSelectedCategory,
+				handleAddToCart,
+				cartItems
 			}}
 		>
 			{children}

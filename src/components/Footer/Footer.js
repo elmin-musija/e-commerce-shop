@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
 
-const Footer = () => {
+const Footer = (props) => {
 const {setSearchButtonToggle} = useContext(AppContext)
 const onClickHandler = () => {
     setSearchButtonToggle()
@@ -16,7 +16,7 @@ const onClickHandler = () => {
         <Link to="/home">
             <FooterHomeBtn className="footer__home-icon"/>
         </Link>
-        <Link to="/home">
+        <Link to="/cart">
             <img src={cart} alt="cart-logo" />
         </Link>
         <Link onClick={onClickHandler}>

@@ -1,17 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./ProductDetails.css";
 import "../../components/CustomButton/CustomButton.css";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Footer from "../../components/Footer/Footer";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
+import AppContext from "../../context/AppContext";
+import Cart from "../../components/Cart/Cart";
 
 const ProductDetails = (props) => {
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
-	const [count, setCount] = useState(0);
+	const [count, setCount] = useState(1);
 	const [stock, setStock] = useState("");
+
+	const { handleAddToCart } = useContext(AppContext);
+	
 
 	useEffect(() => {
 		setLoading(true);
@@ -24,8 +29,6 @@ const ProductDetails = (props) => {
 			});
 	}, [id]);
 
-console.log(stock);
-
 	if (loading) {
 		return (
 			<div className="loader-container">
@@ -33,6 +36,11 @@ console.log(stock);
 			</div>
 		);
 	}
+
+	const handleClick = (event) => {
+		event.preventDefault();
+		handleAddToCart(data.title, `${count} pieces`)
+	};
 
 	const handlePlusClick = () => {
 		if (count >= stock) {
@@ -42,7 +50,7 @@ console.log(stock);
 	};
 
 	const handleMinusClick = () => {	
-		if (count <=0) {
+		if (count <=1) {
 			return
 		} else
 		setCount(count - 1);
@@ -81,6 +89,7 @@ console.log(stock);
 						<h4 className="product-details__head-description">Description</h4>
 						<p className="product-details__description">{data.description.substring(0, 120) + "..."}</p>
 						<CustomButton
+							pr_onClickHandler={handleClick}
 							children="Add to Cart"
 							pr_class="custom-button__product-details"
 						/>
