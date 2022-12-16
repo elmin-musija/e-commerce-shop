@@ -32,7 +32,7 @@
     align-items: center;
     grid-template-columns: repeat(3, 1fr);
     font-size: 2rem;
-    border-bottom: solid 1px #000000;  ;
+    box-shadow: 0 4px 5px -6px #222;
     padding: 10px;
 }
 
