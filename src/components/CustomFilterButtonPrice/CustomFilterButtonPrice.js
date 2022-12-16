@@ -24,13 +24,11 @@ const CustomFilterButtonPrice = (props) => {
 			checkUserSelectedFilterPrice(props.pr_val) === 0
 		) {
 			setUserSelectedFilterPrice(props.pr_val);
-			console.log(localStorage.selectedFilterPrice);
 		} else if (
 			filterButtonStatePrice === true &&
 			checkUserSelectedFilterPrice(props.pr_val) > 0
 		) {
 			removeUserSelectedFilterPrice(props.pr_val);
-			console.log(localStorage.selectedFilterPrice);
 		}
 		setFilterButtonStatePrice((prevState) => !prevState);
 	};

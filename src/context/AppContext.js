@@ -18,6 +18,8 @@ export const AppContextProvider = ({ children }) => {
 	});
 	const [selectedFilter, setSelectedFilter] = useState([]);
 	const [selectedFilterPrice, setSelectedFilterPrice] = useState([]);
+	const [selectedFilterBrand, setSelectedFilterBrand] = useState([]);
+	const [selectedFilterCategory, setSelectedFilterCategory] = useState([]);
 
 	const [cartItems, setCartItems] = useState([]);
 
@@ -124,38 +126,6 @@ export const AppContextProvider = ({ children }) => {
 		return JSON.parse(localStorage.getItem("allCategoriesArray"));
 	};
 
-	const setUserSelectedFilter = (paramFilter) => {
-		setSelectedFilter((prevState) => [...prevState, paramFilter]);
-		// localStorage.setItem(
-		// 	"selectedFilter",
-		// 	JSON.stringify([...selectedFilter, paramFilter])
-		// );
-		localStorage.setItem("selectedFilter", [...selectedFilter, paramFilter]);
-	};
-	const getUserSelectedFilter = () => {
-		// return JSON.stringify(localStorage.getItem("selectedFilter"));
-		return String(localStorage.getItem("selectedFilter")).split(",");
-	};
-	const checkUserSelectedFilter = (paramFilter) => {
-		return selectedFilter.filter((element) => element === paramFilter).length;
-	};
-	// const checkUserSelectedPriceFilter = () => {
-	// 	return selectedFilter.filter((element) => element.includes("€").length);
-	// };
-	const removeUserSelectedFilter = (paramFilter) => {
-		const tmpArray = [...selectedFilter];
-		const index = tmpArray.indexOf(paramFilter);
-		if (index > -1) {
-			tmpArray.splice(index, 1);
-			setSelectedFilter([...tmpArray]);
-		}
-		localStorage.setItem("selectedFilter", JSON.stringify([...tmpArray]));
-	};
-	const resetUserSelectedFilter = () => {
-		setSelectedFilter([]);
-		localStorage.setItem("selectedFilter", "");
-	};
-
 	/**
 	 * Price filter
 	 */
@@ -184,10 +154,74 @@ export const AppContextProvider = ({ children }) => {
 		localStorage.setItem("selectedFilterPrice", [...tmpArray]);
 	};
 	const resetUserSelectedFilterPrice = () => {
-		console.log("resetUserSelectedFilterPrice");
 		setSelectedFilterPrice([]);
 		localStorage.setItem("selectedFilterPrice", "");
 	};
+
+	/**
+	 * Brand filter
+	 */
+
+	const setUserSelectedFilterBrand = (paramFilter) => {
+		setSelectedFilterBrand((prevState) => [...prevState, paramFilter]);
+		localStorage.setItem("selectedFilterBrand", [
+			...selectedFilterBrand,
+			paramFilter,
+		]);
+	};
+	const getUserSelectedFilterBrand = () => {
+		return String(localStorage.getItem("selectedFilterBrand")).split(",");
+	};
+	const checkUserSelectedFilterBrand = (paramFilter) => {
+		return selectedFilterBrand.filter((element) => element === paramFilter)
+			.length;
+	};
+	const removeUserSelectedFilterBrand = (paramFilter) => {
+		const tmpArray = [...selectedFilterBrand];
+		const index = tmpArray.indexOf(paramFilter);
+		if (index > -1) {
+			tmpArray.splice(index, 1);
+			setSelectedFilterBrand([...tmpArray]);
+		}
+		localStorage.setItem("selectedFilterBrand", [...tmpArray]);
+	};
+	const resetUserSelectedFilterBrand = () => {
+		setSelectedFilterBrand([]);
+		localStorage.setItem("selectedFilterBrand", "");
+	};
+
+	/**
+	 * Category filter
+	 */
+
+	const setUserSelectedFilterCategory = (paramFilter) => {
+		setSelectedFilterCategory((prevState) => [...prevState, paramFilter]);
+		localStorage.setItem("selectedFilterCategory", [
+			...selectedFilterCategory,
+			paramFilter,
+		]);
+	};
+	const getUserSelectedFilterCategory = () => {
+		return String(localStorage.getItem("selectedFilterCategory")).split(",");
+	};
+	const checkUserSelectedFilterCategory = (paramFilter) => {
+		return selectedFilterCategory.filter((element) => element === paramFilter)
+			.length;
+	};
+	const removeUserSelectedFilterCategory = (paramFilter) => {
+		const tmpArray = [...selectedFilterCategory];
+		const index = tmpArray.indexOf(paramFilter);
+		if (index > -1) {
+			tmpArray.splice(index, 1);
+			setSelectedFilterCategory([...tmpArray]);
+		}
+		localStorage.setItem("selectedFilterCategory", [...tmpArray]);
+	};
+	const resetUserSelectedFilterCategory = () => {
+		setSelectedFilterCategory([]);
+		localStorage.setItem("selectedFilterCategory", "");
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -210,18 +244,24 @@ export const AppContextProvider = ({ children }) => {
 				handleAddToCart,
 				cartItems,
 				setCartItems,
-				setUserSelectedFilter,
-				getUserSelectedFilter,
-				checkUserSelectedFilter,
-				// checkUserSelectedPriceFilter,
-				resetUserSelectedFilter,
-				removeUserSelectedFilter,
 				// Price
 				setUserSelectedFilterPrice,
 				getUserSelectedFilterPrice,
 				checkUserSelectedFilterPrice,
 				removeUserSelectedFilterPrice,
 				resetUserSelectedFilterPrice,
+				//Brand
+				setUserSelectedFilterBrand,
+				getUserSelectedFilterBrand,
+				checkUserSelectedFilterBrand,
+				removeUserSelectedFilterBrand,
+				resetUserSelectedFilterBrand,
+				//Category
+				setUserSelectedFilterCategory,
+				getUserSelectedFilterCategory,
+				checkUserSelectedFilterCategory,
+				removeUserSelectedFilterCategory,
+				resetUserSelectedFilterCategory,
 			}}
 		>
 			{children}

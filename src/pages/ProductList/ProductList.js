@@ -7,7 +7,6 @@ import { Link, useParams } from "react-router-dom";
 import "./ProductList.css";
 
 const ProductList = (props) => {
-	let result = [];
 	const [data, setData] = useState([]);
 
 	const { search, category, filter } = useParams();
@@ -17,14 +16,18 @@ const ProductList = (props) => {
 		setUserSearchString,
 		getFetchAllItemsData,
 		resetUserSearchButtonClicked,
-		resetUserSelectedFilter,
-		getUserSelectedFilter,
+		resetUserSelectedFilterCategory,
+		resetUserSelectedFilterPrice,
+		resetUserSelectedFilterBrand,
+		getUserSelectedFilterCategory,
+		getUserSelectedFilterPrice,
+		getUserSelectedFilterBrand,
 	} = useContext(AppContext);
 
 	useEffect(() => {
 		if (search) {
 			if (getUserSearchString() !== "") {
-				result = getFetchAllItemsData().filter((element) => {
+				const result = getFetchAllItemsData().filter((element) => {
 					if (
 						element.title.toLowerCase().includes(getUserSearchString()) ||
 						element.brand.toLowerCase().includes(getUserSearchString()) ||
@@ -33,7 +36,7 @@ const ProductList = (props) => {
 						return element;
 					}
 				});
-				// setData(result);
+				setData(result);
 				setUserSearchString("");
 				resetUserSearchButtonClicked();
 			}
@@ -44,21 +47,19 @@ const ProductList = (props) => {
 		getFetchAllItemsData,
 		resetUserSearchButtonClicked,
 		setUserSearchString,
-		result,
 	]);
 
 	useEffect(() => {
 		if (category) {
 			if (getUserSearchString() === "") {
-				result = getFetchAllItemsData().filter((element) => {
+				const result = getFetchAllItemsData().filter((element) => {
 					if (element.category.toLowerCase().includes(category)) {
 						return element;
 					}
 				});
-				// setData(result);
-				resetUserSearchButtonClicked();
+				setData(result);
 			} else if (getUserSearchString() !== "") {
-				result = getFetchAllItemsData().filter((element) => {
+				const result = getFetchAllItemsData().filter((element) => {
 					if (
 						element.category.toLowerCase().includes(category) &&
 						element.title.toLowerCase().includes(getUserSearchString())
@@ -67,45 +68,103 @@ const ProductList = (props) => {
 					}
 				});
 				setData(result);
-				resetUserSearchButtonClicked();
 			}
 		}
+		return () => {
+			cleanUpCategory();
+		};
 	}, [
 		category,
 		getFetchAllItemsData,
 		getUserSearchString,
 		resetUserSearchButtonClicked,
-		result,
 	]);
+
+	const cleanUpCategory = () => {
+		resetUserSearchButtonClicked();
+	};
 
 	useEffect(() => {
-		const userSelectedFilter = getUserSelectedFilter();
-		if (filter === "all") {
+		if (filter) {
+			let resultArray = [];
+			const userSelectedFilterCategory = getUserSelectedFilterCategory();
+			const userSelectedFilterPrice = getUserSelectedFilterPrice();
+			const userSelectedFilterBrand = getUserSelectedFilterBrand();
 			const allItems = getFetchAllItemsData();
-			setData(allItems);
-		} else if (filter === "filter") {
-			const allItems = getFetchAllItemsData();
-			result = allItems.filter((element) => {
-				for (let key of userSelectedFilter) {
-					if (element.brand.includes(key) || element.category.includes(key)) {
-						return true;
-					}
+			if (filter === "all") {
+				setData(allItems);
+			} else if (filter === "filter") {
+				if (String(userSelectedFilterCategory).length !== 0) {
+					const resultCategory = allItems.filter((element) => {
+						for (let key of userSelectedFilterCategory) {
+							if (element.category.toLowerCase().includes(key.toLowerCase())) {
+								return true;
+							}
+						}
+					});
+					resultArray = [...resultCategory];
 				}
-			});
-			// setData(result);
+				if (String(userSelectedFilterPrice).length !== 0) {
+					let resultPrice = [];
+					const [minPrice, maxPrice] = userSelectedFilterPrice[0].split("-");
+					if (resultArray.length !== 0) {
+						resultPrice = resultArray.filter((element) => {
+							if (Number(maxPrice) !== 0) {
+								if (
+									element.price >= Number(minPrice) &&
+									element.price <= Number(maxPrice)
+								) {
+									return true;
+								}
+							} else {
+								if (element.price >= Number(minPrice)) {
+									return true;
+								}
+							}
+						});
+					} else {
+						resultPrice = allItems.filter((element) => {
+							if (Number(maxPrice) !== 0) {
+								if (
+									element.price >= Number(minPrice) &&
+									element.price <= Number(maxPrice)
+								) {
+									return true;
+								}
+							} else {
+								if (element.price >= Number(minPrice)) {
+									return true;
+								}
+							}
+						});
+					}
+					resultArray = [...resultPrice];
+				}
+				if (String(userSelectedFilterBrand.length !== 0)) {
+					let resultBrand = [];
+					if (resultArray.length !== 0) {
+						resultBrand = resultArray.filter((element) => {
+							for (let key of userSelectedFilterBrand) {
+								if (element.brand.toLowerCase().includes(key.toLowerCase())) {
+									return true;
+								}
+							}
+						});
+					} else {
+						resultBrand = allItems.filter((element) => {
+							for (let key of userSelectedFilterBrand) {
+								if (element.brand.toLowerCase().includes(key.toLowerCase())) {
+									return true;
+								}
+							}
+						});
+					}
+					resultArray = [...resultBrand];
+				}
+				setData(resultArray);
+			}
 		}
-		// resetUserSelectedFilter();
-	}, [
-		filter,
-		getFetchAllItemsData,
-		getUserSelectedFilter,
-		resetUserSelectedFilter,
-		result,
-	]);
-
-	// useEffect(() => {
-	// 	setData(result);
-	// }, [result]);
+	}, [filter, getFetchAllItemsData]);
 
 	return (
 		<div className="product-list">

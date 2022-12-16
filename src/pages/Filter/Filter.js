@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import FilterHeader from "../../components/FilterHeader/FilterHeader";
-import CustomFilterButton from "../../components/CustomFilterButton/CustomFilterButton";
 import CustomFilterButtonPrice from "../../components/CustomFilterButtonPrice/CustomFilterButtonPrice";
+import CustomFilterButtonBrand from "../../components/CustomFilterButtonBrand/CustomFilterButtonBrand";
+import CustomFilterButtonCategory from "../../components/CustomFilterButtonCategory/CustomFilterButtonCategory";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import AppContext from "../../context/AppContext";
 import "./Filter.css";
@@ -10,10 +11,15 @@ import "./Filter.css";
 const Filter = (props) => {
 	const {
 		getCategoriesArray,
-		getUserSelectedFilter,
-		resetUserSelectedFilterPrice,
-		resetUserSelectedFilter,
+
 		getUserSelectedFilterPrice,
+		getUserSelectedFilterBrand,
+		getUserSelectedFilterCategory,
+		setUserSearchString,
+		setUserSelectedCategory,
+		resetUserSelectedFilterPrice,
+		resetUserSelectedFilterBrand,
+		resetUserSelectedFilterCategory,
 	} = useContext(AppContext);
 
 	const [filterButtonState, setFilterButtonState] = useState(false);
@@ -23,9 +29,9 @@ const Filter = (props) => {
 		if (tmp.length > 0) {
 			return tmp.map((element, index) => {
 				return (
-					<CustomFilterButton key={index} className="filter-grid-item">
+					<CustomFilterButtonCategory key={index} className="filter-grid-item">
 						{element[0].category}
-					</CustomFilterButton>
+					</CustomFilterButtonCategory>
 				);
 			});
 		}
@@ -92,9 +98,9 @@ const Filter = (props) => {
 		if (tmp.length > 0) {
 			return tmp.map((element, index) => {
 				return (
-					<CustomFilterButton key={index} className="filter-grid-item ">
+					<CustomFilterButtonBrand key={index} className="filter-grid-item ">
 						{element[0].brand}
-					</CustomFilterButton>
+					</CustomFilterButtonBrand>
 				);
 			});
 		}
@@ -110,23 +116,31 @@ const Filter = (props) => {
 
 	useEffect(() => {
 		if (filterButtonState === true) {
-			// reset filter buttons
-			resetUserSelectedFilter();
-			resetUserSelectedFilterPrice();
+			setUserSearchString("");
+			setUserSelectedCategory("");
+			// resetUserSelectedFilterCategory();
+			// resetUserSelectedFilterPrice();
+			// resetUserSelectedFilterBrand();
 		}
 	}, [
 		filterButtonState,
-		resetUserSelectedFilter,
 		resetUserSelectedFilterPrice,
+		resetUserSelectedFilterBrand,
+		resetUserSelectedFilterCategory,
+		setUserSearchString,
+		setUserSelectedCategory,
 	]);
 
 	const redirectToProductDetails = () => {
 		if (filterButtonState === true) {
 			if (
-				getUserSelectedFilter().length === 0 &&
-				getUserSelectedFilterPrice().length === 0
+				String(getUserSelectedFilterCategory()).length === 0 &&
+				String(getUserSelectedFilterPrice()).length === 0 &&
+				String(getUserSelectedFilterBrand()).length === 0
 			) {
+				resetUserSelectedFilterCategory();
 				resetUserSelectedFilterPrice();
+				resetUserSelectedFilterBrand();
 				return <Navigate to={`/productlist/filter/all`} />;
 			} else {
 				return <Navigate to={`/productlist/filter/filter`} />;

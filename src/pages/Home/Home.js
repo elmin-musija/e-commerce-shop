@@ -17,7 +17,16 @@ const Home = (props) => {
 		getUserSearchButtonClicked,
 		resetUserSearchButtonClicked,
 		getFetchAllItemsData,
+		resetUserSelectedFilterCategory,
+		resetUserSelectedFilterPrice,
+		resetUserSelectedFilterBrand,
 	} = useContext(AppContext);
+
+	useEffect(() => {
+		resetUserSelectedFilterCategory();
+		resetUserSelectedFilterPrice();
+		resetUserSelectedFilterBrand();
+	}, []);
 
 	useEffect(() => {
 		const result = getFetchAllItemsData();
@@ -47,18 +56,14 @@ const Home = (props) => {
 
 	useEffect(() => {
 		if (getUserSearchString() !== "" && getUserSearchButtonClicked()) {
-			console.log("call useEffect");
 			resetUserSearchButtonClicked();
 			redirectToProductList(true);
 		}
-		return () => {
-			console.log("clean-up-function");
-		};
+		return () => {};
 	}, [getUserSearchButtonClicked, getUserSearchString]);
 
 	const redirectToProductList = (paramReturn) => {
 		if (paramReturn) {
-			console.log("redirect");
 			navigate(`/productlist/search/${getUserSearchString()}`);
 		}
 	};

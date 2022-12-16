@@ -67,6 +67,14 @@ function App() {
 									}
 								></Route>
 								<Route
+									path="/productlist/filter/:filter"
+									element={
+										<PageWrapper>
+											<ProductList />
+										</PageWrapper>
+									}
+								></Route>
+								<Route
 									path="/productdetails/:id"
 									element={
 										<PageWrapper>
