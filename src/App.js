@@ -94,7 +94,6 @@ function App() {
 						</BrowserRouter>
 					</AppContextProvider>
 				</div>
-				>>>>>>> main
 			</div>
 		</div>
 	);
