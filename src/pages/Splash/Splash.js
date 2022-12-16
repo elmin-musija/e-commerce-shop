@@ -19,7 +19,7 @@ const Splash = (props) => {
 	useEffect(() => {
 		const fetchFunctionAllItems = () => {
 			// setFetchAllItems(false, []);
-			fetch("https://dummyjson.com/products/?limit=100")
+			fetch("http://dummyjson.com/products/?limit=100")
 				.then((response) => response.json())
 				.then((allItems) => {
 					setFetchAllItems(true, allItems.products);

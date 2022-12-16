@@ -20,7 +20,7 @@ const ProductDetails = (props) => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`https://dummyjson.com/products/${id}`)
+		fetch(`http://dummyjson.com/products/${id}`)
 			.then((response) => response.json())
 			.then((json) => {
 				setData(json);
