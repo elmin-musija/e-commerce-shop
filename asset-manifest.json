@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-commerce-shop/static/css/main.9e99f37d.css",
-    "main.js": "/e-commerce-shop/static/js/main.edc2edbb.js",
+    "main.js": "/e-commerce-shop/static/js/main.4d22456c.js",
     "static/js/787.fc7c457a.chunk.js": "/e-commerce-shop/static/js/787.fc7c457a.chunk.js",
     "static/media/onboarding-inner-image.svg": "/e-commerce-shop/static/media/onboarding-inner-image.1a29730c98cb33731bd2dff30800a998.svg",
     "static/media/Poppins-Regular.ttf": "/e-commerce-shop/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
@@ -17,11 +17,11 @@
     "static/media/YellowStar.svg": "/e-commerce-shop/static/media/YellowStar.72b709c55a5e8a8160b10c635a3ff1cb.svg",
     "static/media/RoundBluePlusButton.svg": "/e-commerce-shop/static/media/RoundBluePlusButton.674b99c3a8f7026df9987ffe2b10556f.svg",
     "main.9e99f37d.css.map": "/e-commerce-shop/static/css/main.9e99f37d.css.map",
-    "main.edc2edbb.js.map": "/e-commerce-shop/static/js/main.edc2edbb.js.map",
+    "main.4d22456c.js.map": "/e-commerce-shop/static/js/main.4d22456c.js.map",
     "787.fc7c457a.chunk.js.map": "/e-commerce-shop/static/js/787.fc7c457a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9e99f37d.css",
-    "static/js/main.edc2edbb.js"
+    "static/js/main.4d22456c.js"
   ]
 }
